@@ -1,90 +1,91 @@
-"use client"
+'use client';
 
-import type React from "react"
+import type React from 'react';
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { Menu, X, ChevronDown } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { ModeToggle } from "@/components/mode-toggle"
-import { motion, AnimatePresence } from "framer-motion"
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { Menu, X, ChevronDown } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { ModeToggle } from '@/components/mode-toggle';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
-  const pathname = usePathname()
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const pathname = usePathname();
 
   const navigation = [
-    { name: "Home", href: "/" },
+    { name: 'Home', href: '/' },
     {
-      name: "Courses",
-      href: "/courses",
+      name: 'Courses',
+      href: '/courses',
       submenu: [
-        { name: "All Courses", href: "/courses" },
-        { name: "Substrate Courses", href: "/courses/substrate" },
-        { name: "Rust Courses", href: "/courses/rust" },
-        { name: "ink! Smart Contracts", href: "/courses/ink" },
+        { name: 'All Courses', href: '/courses' },
+        { name: 'Substrate Courses', href: '/courses/substrate' },
+        { name: 'Rust Courses', href: '/courses/rust' },
+        { name: 'ink! Smart Contracts', href: '/courses/ink' },
       ],
     },
-    { name: "Bootcamp", href: "/bootcamp" },
-    { name: "Workshops", href: "/workshops" },
-    { name: "Videos", href: "/videos" },
-    { name: "Learning Path", href: "/learning-path" },
-  ]
+    { name: 'Bootcamp', href: '/bootcamp' },
+    { name: 'Workshops', href: '/workshops' },
+    { name: 'Videos', href: '/videos' },
+    { name: 'Learning Path', href: '/learning-path' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
-        setIsScrolled(true)
+        setIsScrolled(true);
       } else {
-        setIsScrolled(false)
+        setIsScrolled(false);
       }
-    }
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-  const toggleDropdown = (name: string) => {
-    if (activeDropdown === name) {
-      setActiveDropdown(null)
-    } else {
-      setActiveDropdown(name)
-    }
-  }
+  const toggleDropdown = (e: React.MouseEvent, name: string) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setActiveDropdown(activeDropdown === name ? null : name);
+  };
 
-  // Close dropdown when clicking outside
+  // Close dropdown when clicking outside or when route changes
   useEffect(() => {
-    const handleClickOutside = () => {
-      setActiveDropdown(null)
-    }
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest('.dropdown-container')) {
+        setActiveDropdown(null);
+      }
+    };
 
-    document.addEventListener("click", handleClickOutside)
-    return () => document.removeEventListener("click", handleClickOutside)
-  }, [])
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
-  // Prevent closing when clicking inside dropdown
-  const handleDropdownClick = (e: React.MouseEvent) => {
-    e.stopPropagation()
-  }
+  // Close dropdown when route changes
+  useEffect(() => {
+    setActiveDropdown(null);
+  }, [pathname]);
 
   // Close mobile menu when navigating
   useEffect(() => {
-    setIsMenuOpen(false)
-  }, [pathname])
+    setIsMenuOpen(false);
+  }, [pathname]);
 
   return (
     <motion.nav
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? "border-b border-gray-200 bg-white/90 backdrop-blur-md dark:border-gray-800 dark:bg-gray-950/90"
-          : "bg-transparent"
+          ? 'border-b border-gray-200 bg-white/90 backdrop-blur-md dark:border-gray-800 dark:bg-gray-950/90'
+          : 'bg-transparent'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
     >
       <div className="container mx-auto px-4">
         <div className="flex h-20 items-center justify-between">
@@ -98,9 +99,11 @@ export default function Navbar() {
               <motion.div
                 className="h-10 w-10 rounded-full bg-gradient-to-br from-pink-500 to-purple-600 shadow-md shadow-pink-200 dark:shadow-pink-900/20"
                 whileHover={{ scale: 1.1 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 10 }}
               ></motion.div>
-              <span className="font-heading text-xl font-bold text-gray-900 dark:text-white">Polkadot Builders</span>
+              <span className="font-heading text-xl font-bold text-gray-900 dark:text-white">
+                Polkadot Builders
+              </span>
             </Link>
           </motion.div>
 
@@ -121,15 +124,15 @@ export default function Navbar() {
                 >
                   {item.submenu ? (
                     <button
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        toggleDropdown(item.name)
-                      }}
+                      onClick={e => toggleDropdown(e, item.name)}
+                      onMouseEnter={() => setActiveDropdown(item.name)}
                       className={`flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
                         pathname.startsWith(item.href)
-                          ? "bg-pink-50 text-pink-700 dark:bg-pink-900/20 dark:text-pink-300"
-                          : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                          ? 'bg-pink-50 text-pink-700 dark:bg-pink-900/20 dark:text-pink-300'
+                          : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'
                       }`}
+                      aria-expanded={activeDropdown === item.name}
+                      aria-haspopup="true"
                     >
                       {item.name}
                       <motion.div
@@ -144,8 +147,8 @@ export default function Navbar() {
                       href={item.href}
                       className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
                         pathname === item.href
-                          ? "bg-pink-50 text-pink-700 dark:bg-pink-900/20 dark:text-pink-300"
-                          : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                          ? 'bg-pink-50 text-pink-700 dark:bg-pink-900/20 dark:text-pink-300'
+                          : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'
                       }`}
                     >
                       {item.name}
@@ -155,10 +158,11 @@ export default function Navbar() {
                   <AnimatePresence>
                     {item.submenu && activeDropdown === item.name && (
                       <motion.div
-                        className="absolute left-0 top-full z-10 mt-1 min-w-[200px] rounded-lg border border-gray-200 bg-white p-2 shadow-lg dark:border-gray-800 dark:bg-gray-900"
-                        onClick={handleDropdownClick}
+                        className="dropdown-container absolute left-0 top-full z-10 mt-1 min-w-[200px] rounded-lg border border-gray-200 bg-white p-2 shadow-lg dark:border-gray-800 dark:bg-gray-900"
+                        onMouseEnter={() => setActiveDropdown(item.name)}
+                        onMouseLeave={() => setActiveDropdown(null)}
                         initial={{ opacity: 0, y: 10, height: 0 }}
-                        animate={{ opacity: 1, y: 0, height: "auto" }}
+                        animate={{ opacity: 1, y: 0, height: 'auto' }}
                         exit={{ opacity: 0, y: 10, height: 0 }}
                         transition={{ duration: 0.2 }}
                       >
@@ -197,15 +201,15 @@ export default function Navbar() {
               variant="outline"
               className="hidden rounded-full border-pink-200 dark:border-pink-900/50 md:inline-flex hover:bg-pink-50 hover:text-pink-600 dark:hover:bg-pink-900/20 dark:hover:text-pink-300 transition-all duration-300"
             >
-              <Link href="https://github.com/openguild-labs" target="_blank" rel="noopener noreferrer">
+              <Link
+                href="https://github.com/openguild-labs"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 GitHub
               </Link>
             </Button>
-            <Button
-              className="hidden rounded-full bg-pink-600 hover:bg-pink-500 hover:shadow-md hover:shadow-pink-200 dark:hover:shadow-pink-900/20 md:inline-flex transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+            <Button className="hidden hover:scale-105 rounded-full bg-pink-600 hover:bg-pink-500 hover:shadow-md hover:shadow-pink-200 dark:hover:shadow-pink-900/20 md:inline-flex transition-all duration-300">
               <Link href="/bootcamp">Join Bootcamp</Link>
             </Button>
 
@@ -228,7 +232,7 @@ export default function Navbar() {
           <motion.div
             className="md:hidden"
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
+            animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
           >
@@ -243,12 +247,14 @@ export default function Navbar() {
                   {item.submenu ? (
                     <>
                       <button
-                        onClick={() => toggleDropdown(item.name)}
+                        onClick={e => toggleDropdown(e, item.name)}
                         className={`flex w-full items-center justify-between rounded-md px-3 py-2 text-base font-medium ${
                           pathname.startsWith(item.href)
-                            ? "bg-pink-50 text-pink-700 dark:bg-pink-900/20 dark:text-pink-300"
-                            : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                            ? 'bg-pink-50 text-pink-700 dark:bg-pink-900/20 dark:text-pink-300'
+                            : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'
                         }`}
+                        aria-expanded={activeDropdown === item.name}
+                        aria-haspopup="true"
                       >
                         {item.name}
                         <motion.div
@@ -263,7 +269,7 @@ export default function Navbar() {
                           <motion.div
                             className="ml-4 space-y-1"
                             initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
+                            animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
                             transition={{ duration: 0.2 }}
                           >
@@ -278,8 +284,8 @@ export default function Navbar() {
                                   href={subitem.href}
                                   className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-pink-50 hover:text-pink-700 dark:text-gray-300 dark:hover:bg-pink-900/20 dark:hover:text-pink-300"
                                   onClick={() => {
-                                    setIsMenuOpen(false)
-                                    setActiveDropdown(null)
+                                    setIsMenuOpen(false);
+                                    setActiveDropdown(null);
                                   }}
                                 >
                                   {subitem.name}
@@ -295,8 +301,8 @@ export default function Navbar() {
                       href={item.href}
                       className={`block rounded-md px-3 py-2 text-base font-medium ${
                         pathname === item.href
-                          ? "bg-pink-50 text-pink-700 dark:bg-pink-900/20 dark:text-pink-300"
-                          : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                          ? 'bg-pink-50 text-pink-700 dark:bg-pink-900/20 dark:text-pink-300'
+                          : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'
                       }`}
                       onClick={() => setIsMenuOpen(false)}
                     >
@@ -310,7 +316,11 @@ export default function Navbar() {
                   variant="outline"
                   className="w-full justify-center rounded-full border-pink-200 dark:border-pink-900/50"
                 >
-                  <Link href="https://github.com/openguild-labs" target="_blank" rel="noopener noreferrer">
+                  <Link
+                    href="https://github.com/openguild-labs"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     GitHub
                   </Link>
                 </Button>
@@ -323,5 +333,5 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </motion.nav>
-  )
+  );
 }

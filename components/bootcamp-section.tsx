@@ -1,15 +1,15 @@
-"use client"
+'use client';
 
-import { useState } from "react"
-import Image from "next/image"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Card, CardContent } from "@/components/ui/card"
-import SectionHeader from "@/components/section-header"
-import VideoCard from "@/components/video-card"
-import { bootcampPolkadotSdkVideos, bootcampSolidityOnPolkaVmVideos } from "@/constants"
+import { useState } from 'react';
+import Image from 'next/image';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Card, CardContent } from '@/components/ui/card';
+import SectionHeader from '@/components/section-header';
+import VideoCard from '@/components/video-card';
+import { bootcampPolkadotSdkVideos, bootcampSolidityOnPolkaVmVideos } from '@/constants';
 
 export default function BootcampSection() {
-  const [activeTab, setActiveTab] = useState("polkadot-sdk")
+  const [activeTab, setActiveTab] = useState('polkadot-sdk');
 
   return (
     <section className="py-16">
@@ -23,10 +23,12 @@ export default function BootcampSection() {
         <div className="rounded-lg bg-white p-4 dark:bg-gray-950">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <div className="flex-1">
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white">Join the next cohort</h3>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                Join the next cohort
+              </h3>
               <p className="mt-2 text-gray-600 dark:text-gray-300">
-                Registration is now open for the next Open Polkadot Bootcamp. Learn from industry experts and build
-                real-world projects.
+                Registration is now open for the next Open Polkadot Bootcamp. Learn from industry
+                experts and build real-world projects.
               </p>
             </div>
             <a
@@ -52,16 +54,20 @@ export default function BootcampSection() {
             <CardContent className="p-6">
               <div className="grid gap-6 md:grid-cols-2">
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">Polkadot SDK Curriculum</h3>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                    Polkadot SDK Curriculum
+                  </h3>
                   <p className="mt-2 text-gray-600 dark:text-gray-300">
-                    Learn how to build scalable blockchains using the Polkadot SDK. This track covers everything from
-                    basic concepts to advanced parachain development.
+                    Learn how to build scalable blockchains using the Polkadot SDK. This track
+                    covers everything from basic concepts to advanced parachain development.
                   </p>
                   <div className="mt-4 flex items-center">
                     <div className="rounded-full bg-pink-100 px-3 py-1 text-sm font-medium text-pink-800 dark:bg-pink-900/30 dark:text-pink-300">
                       {bootcampPolkadotSdkVideos.length} videos
                     </div>
-                    <span className="ml-2 text-sm text-gray-500 dark:text-gray-400">• 10 sections</span>
+                    <span className="ml-2 text-sm text-gray-500 dark:text-gray-400">
+                      • 10 sections
+                    </span>
                   </div>
                 </div>
                 <div className="flex items-center justify-center">
@@ -100,16 +106,21 @@ export default function BootcampSection() {
             <CardContent className="p-6">
               <div className="grid gap-6 md:grid-cols-2">
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">Solidity on PolkaVM Curriculum</h3>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                    Solidity on PolkaVM Curriculum
+                  </h3>
                   <p className="mt-2 text-gray-600 dark:text-gray-300">
-                    Learn how to use Solidity on PolkaVM, a revolutionary smart contract platform built on RISC-V. This
-                    track is perfect for Ethereum developers looking to build on Polkadot.
+                    Learn how to use Solidity on PolkaVM, a revolutionary smart contract platform
+                    built on RISC-V. This track is perfect for Ethereum developers looking to build
+                    on Polkadot.
                   </p>
                   <div className="mt-4 flex items-center">
                     <div className="rounded-full bg-pink-100 px-3 py-1 text-sm font-medium text-pink-800 dark:bg-pink-900/30 dark:text-pink-300">
                       {bootcampSolidityOnPolkaVmVideos.length} videos
                     </div>
-                    <span className="ml-2 text-sm text-gray-500 dark:text-gray-400">• 3 sections</span>
+                    <span className="ml-2 text-sm text-gray-500 dark:text-gray-400">
+                      • 3 sections
+                    </span>
                   </div>
                 </div>
                 <div className="flex items-center justify-center">
@@ -144,5 +155,5 @@ export default function BootcampSection() {
         </TabsContent>
       </Tabs>
     </section>
-  )
+  );
 }

@@ -1,5 +1,5 @@
-import Link from "next/link"
-import { Github, Twitter, Youtube, Mail } from "lucide-react"
+import Link from 'next/link';
+import { Github, Twitter, Youtube, Mail } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -9,11 +9,14 @@ export default function Footer() {
           <div className="md:col-span-2">
             <Link href="/" className="flex items-center space-x-2">
               <div className="h-10 w-10 rounded-full bg-gradient-to-br from-pink-500 to-purple-600"></div>
-              <span className="font-heading text-xl font-bold text-gray-900 dark:text-white">Polkadot Builders</span>
+              <span className="font-heading text-xl font-bold text-gray-900 dark:text-white">
+                Polkadot Builders
+              </span>
             </Link>
             <p className="mt-4 max-w-md text-gray-600 dark:text-gray-300">
-              A comprehensive education hub for Polkadot blockchain developers. Learn, build, and contribute to the
-              Polkadot ecosystem through structured courses, workshops, and bootcamps.
+              A comprehensive education hub for Polkadot blockchain developers. Learn, build, and
+              contribute to the Polkadot ecosystem through structured courses, workshops, and
+              bootcamps.
             </p>
             <div className="mt-6 flex space-x-4">
               <Link
@@ -165,5 +168,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

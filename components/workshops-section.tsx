@@ -1,9 +1,9 @@
-import Image from "next/image"
-import Link from "next/link"
-import { ExternalLink } from "lucide-react"
-import { Card, CardContent, CardFooter } from "@/components/ui/card"
-import SectionHeader from "@/components/section-header"
-import { workshops } from "@/constants"
+import Image from 'next/image';
+import Link from 'next/link';
+import { ExternalLink } from 'lucide-react';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import SectionHeader from '@/components/section-header';
+import { workshops } from '@/constants';
 
 export default function WorkshopsSection() {
   return (
@@ -16,11 +16,14 @@ export default function WorkshopsSection() {
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {workshops.slice(0, 6).map((workshop, index) => (
-          <Card key={index} className="overflow-hidden transition-all hover:shadow-md dark:hover:shadow-pink-900/10">
+          <Card
+            key={index}
+            className="overflow-hidden transition-all hover:shadow-md dark:hover:shadow-pink-900/10"
+          >
             <div className="aspect-video w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
               {workshop.img ? (
                 <Image
-                  src={workshop.img || "/placeholder.svg"}
+                  src={workshop.img || '/placeholder.svg'}
                   alt={workshop.title}
                   width={400}
                   height={225}
@@ -33,10 +36,14 @@ export default function WorkshopsSection() {
               )}
             </div>
             <CardContent className="p-4">
-              <h3 className="line-clamp-2 text-lg font-medium text-gray-900 dark:text-white">{workshop.title}</h3>
+              <h3 className="line-clamp-2 text-lg font-medium text-gray-900 dark:text-white">
+                {workshop.title}
+              </h3>
             </CardContent>
             <CardFooter className="flex flex-col items-start space-y-4 p-4 pt-0">
-              <p className="line-clamp-3 text-sm text-gray-500 dark:text-gray-400">{workshop.description}</p>
+              <p className="line-clamp-3 text-sm text-gray-500 dark:text-gray-400">
+                {workshop.description}
+              </p>
               <Link
                 href={workshop.url}
                 target="_blank"
@@ -61,5 +68,5 @@ export default function WorkshopsSection() {
         </div>
       )}
     </section>
-  )
+  );
 }

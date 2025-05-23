@@ -1,44 +1,44 @@
-"use client"
+'use client';
 
-import type React from "react"
+import type React from 'react';
 
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Play, X, ChevronRight, Star, Clock, Award, Users, BookOpen } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
-import CoursePreviewCurriculum from "@/components/course-preview/course-preview-curriculum"
-import CoursePreviewVideo from "@/components/course-preview/course-preview-video"
-import CoursePreviewQuiz from "@/components/course-preview/course-preview-quiz"
-import CoursePreviewReviews from "@/components/course-preview/course-preview-reviews"
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Play, X, ChevronRight, Star, Clock, Award, Users, BookOpen } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import CoursePreviewCurriculum from '@/components/course-preview/course-preview-curriculum';
+import CoursePreviewVideo from '@/components/course-preview/course-preview-video';
+import CoursePreviewQuiz from '@/components/course-preview/course-preview-quiz';
+import CoursePreviewReviews from '@/components/course-preview/course-preview-reviews';
 
 interface CoursePreviewDialogProps {
   course: {
-    id: string
-    title: string
-    description: string
-    img: string
-    instructor: string
-    instructorTitle: string
-    instructorAvatar: string
-    duration: string
-    level: string
-    students: number
-    rating: number
-    reviews: number
-    price: string
-    url: string
-    videoUrl?: string
-  }
-  children?: React.ReactNode
+    id: string;
+    title: string;
+    description: string;
+    img: string;
+    instructor: string;
+    instructorTitle: string;
+    instructorAvatar: string;
+    duration: string;
+    level: string;
+    students: number;
+    rating: number;
+    reviews: number;
+    price: string;
+    url: string;
+    videoUrl?: string;
+  };
+  children?: React.ReactNode;
 }
 
 export default function CoursePreviewDialog({ course, children }: CoursePreviewDialogProps) {
-  const [activeTab, setActiveTab] = useState("overview")
-  const [isOpen, setIsOpen] = useState(false)
+  const [activeTab, setActiveTab] = useState('overview');
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -65,7 +65,7 @@ export default function CoursePreviewDialog({ course, children }: CoursePreviewD
               {/* Header with course image */}
               <div className="relative h-48 w-full overflow-hidden sm:h-64">
                 <Image
-                  src={course.img || "/placeholder.svg?height=400&width=800"}
+                  src={course.img || '/placeholder.svg?height=400&width=800'}
                   alt={course.title}
                   fill
                   className="object-cover"
@@ -192,11 +192,11 @@ export default function CoursePreviewDialog({ course, children }: CoursePreviewD
                           className="space-y-2"
                         >
                           {[
-                            "Understand the core concepts of Polkadot architecture",
-                            "Build and deploy your own parachain",
-                            "Develop smart contracts using ink!",
-                            "Implement cross-chain messaging with XCM",
-                            "Create decentralized applications on Polkadot",
+                            'Understand the core concepts of Polkadot architecture',
+                            'Build and deploy your own parachain',
+                            'Develop smart contracts using ink!',
+                            'Implement cross-chain messaging with XCM',
+                            'Create decentralized applications on Polkadot',
                           ].map((item, index) => (
                             <motion.li
                               key={index}
@@ -226,7 +226,7 @@ export default function CoursePreviewDialog({ course, children }: CoursePreviewD
                           className="flex items-center"
                         >
                           <Image
-                            src={course.instructorAvatar || "/placeholder.svg?height=50&width=50"}
+                            src={course.instructorAvatar || '/placeholder.svg?height=50&width=50'}
                             alt={course.instructor}
                             width={50}
                             height={50}
@@ -234,7 +234,9 @@ export default function CoursePreviewDialog({ course, children }: CoursePreviewD
                           />
                           <div>
                             <h4 className="font-bold">{course.instructor}</h4>
-                            <p className="text-sm text-gray-600 dark:text-gray-300">{course.instructorTitle}</p>
+                            <p className="text-sm text-gray-600 dark:text-gray-300">
+                              {course.instructorTitle}
+                            </p>
                           </div>
                         </motion.div>
                       </div>
@@ -265,7 +267,9 @@ export default function CoursePreviewDialog({ course, children }: CoursePreviewD
                             <Users className="mr-3 h-5 w-5 text-pink-500" />
                             <div>
                               <p className="text-sm font-medium">Students</p>
-                              <p className="text-gray-600 dark:text-gray-300">{course.students.toLocaleString()}</p>
+                              <p className="text-gray-600 dark:text-gray-300">
+                                {course.students.toLocaleString()}
+                              </p>
                             </div>
                           </div>
                           <div className="flex items-center">
@@ -278,7 +282,9 @@ export default function CoursePreviewDialog({ course, children }: CoursePreviewD
                         </div>
 
                         <div className="mt-6">
-                          <div className="mb-2 text-2xl font-bold text-pink-600 dark:text-pink-400">{course.price}</div>
+                          <div className="mb-2 text-2xl font-bold text-pink-600 dark:text-pink-400">
+                            {course.price}
+                          </div>
                           <Button className="w-full rounded-full bg-pink-600 hover:bg-pink-500">
                             <Link href={course.url} target="_blank" rel="noopener noreferrer">
                               Enroll Now
@@ -315,10 +321,12 @@ export default function CoursePreviewDialog({ course, children }: CoursePreviewD
                 className="border-t border-gray-200 bg-gray-50 p-4 dark:border-gray-800 dark:bg-gray-900"
               >
                 <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-lg font-bold text-pink-600 dark:text-pink-400">{course.price}</div>
+                  {/* <div>
+                    <div className="text-lg font-bold text-pink-600 dark:text-pink-400">
+                      {course.price}
+                    </div>
                     <div className="text-sm text-gray-600 dark:text-gray-300">Lifetime access</div>
-                  </div>
+                  </div> */}
                   <Button
                     size="lg"
                     className="rounded-full bg-pink-600 hover:bg-pink-500 hover:shadow-md hover:shadow-pink-200 dark:hover:shadow-pink-900/20"
@@ -334,5 +342,5 @@ export default function CoursePreviewDialog({ course, children }: CoursePreviewD
         </AnimatePresence>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

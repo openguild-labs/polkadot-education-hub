@@ -1,20 +1,20 @@
-"use client"
+'use client';
 
-import { useState } from "react"
-import Link from "next/link"
-import { ArrowRight, Search, Filter, Play } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useState } from 'react';
+import Link from 'next/link';
+import { ArrowRight, Search, Filter, Play } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import { Card, CardContent } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   technicalVideos,
   communityCallVideos,
   generalVideos,
   bootcampPolkadotSdkVideos,
   bootcampSolidityOnPolkaVmVideos,
-} from "@/constants"
+} from '@/constants';
 
 export default function VideosPage() {
   return (
@@ -23,10 +23,12 @@ export default function VideosPage() {
       <div className="bg-gradient-to-r from-pink-600 to-purple-600 py-16 text-white">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
-            <h1 className="font-heading text-4xl font-bold tracking-tight sm:text-5xl">Technical Videos</h1>
+            <h1 className="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
+              Technical Videos
+            </h1>
             <p className="mt-4 text-lg text-white/80">
-              Watch technical videos, coding sessions, and community calls to deepen your understanding of Polkadot
-              development.
+              Watch technical videos, coding sessions, and community calls to deepen your
+              understanding of Polkadot development.
             </p>
           </div>
         </div>
@@ -53,13 +55,15 @@ export default function VideosPage() {
           <div className="overflow-hidden rounded-2xl bg-gradient-to-r from-gray-900 to-gray-800 shadow-xl">
             <div className="grid md:grid-cols-2">
               <div className="p-8 md:p-12">
-                <Badge className="mb-4 bg-pink-500 text-white hover:bg-pink-600">Featured Video</Badge>
+                <Badge className="mb-4 bg-pink-500 text-white hover:bg-pink-600">
+                  Featured Video
+                </Badge>
                 <h2 className="mb-4 font-heading text-2xl font-bold text-white md:text-3xl">
                   Open Polkadot Bootcamp 2025 - Introduction
                 </h2>
                 <p className="mb-6 text-gray-300">
-                  In this series, Tin Chung will take you step-by-step through the Polkadot SDK, empowering you to build
-                  scalable dApps and parachains on the Polkadot ecosystem.
+                  In this series, Tin Chung will take you step-by-step through the Polkadot SDK,
+                  empowering you to build scalable dApps and parachains on the Polkadot ecosystem.
                 </p>
                 <Button className="rounded-full bg-pink-600 hover:bg-pink-500 hover:shadow-md hover:shadow-pink-500/20">
                   <Link
@@ -93,7 +97,9 @@ export default function VideosPage() {
         <div className="container mx-auto px-4">
           <Tabs defaultValue="bootcamp" className="mx-auto">
             <div className="mb-8 flex flex-col items-center justify-between gap-4 sm:flex-row">
-              <h2 className="font-heading text-2xl font-bold text-gray-900 dark:text-white">Video Library</h2>
+              <h2 className="font-heading text-2xl font-bold text-gray-900 dark:text-white">
+                Video Library
+              </h2>
               <TabsList>
                 <TabsTrigger value="bootcamp">Bootcamp</TabsTrigger>
                 <TabsTrigger value="technical">Technical</TabsTrigger>
@@ -104,7 +110,9 @@ export default function VideosPage() {
 
             <TabsContent value="bootcamp" className="space-y-8">
               <div className="mb-6">
-                <h3 className="mb-2 text-xl font-bold text-gray-900 dark:text-white">Polkadot SDK Track</h3>
+                <h3 className="mb-2 text-xl font-bold text-gray-900 dark:text-white">
+                  Polkadot SDK Track
+                </h3>
                 <p className="text-gray-600 dark:text-gray-300">
                   Learn how to build scalable blockchains using the Polkadot SDK
                 </p>
@@ -117,7 +125,7 @@ export default function VideosPage() {
                       title: video.title,
                       description: video.description,
                       url: video.url,
-                      category: "Polkadot SDK",
+                      category: 'Polkadot SDK',
                     }}
                   />
                 ))}
@@ -133,7 +141,9 @@ export default function VideosPage() {
               )}
 
               <div className="mb-6 mt-12">
-                <h3 className="mb-2 text-xl font-bold text-gray-900 dark:text-white">Solidity on PolkaVM Track</h3>
+                <h3 className="mb-2 text-xl font-bold text-gray-900 dark:text-white">
+                  Solidity on PolkaVM Track
+                </h3>
                 <p className="text-gray-600 dark:text-gray-300">
                   Learn how to use Solidity on PolkaVM, a revolutionary smart contract platform
                 </p>
@@ -146,7 +156,7 @@ export default function VideosPage() {
                       title: video.title,
                       description: video.description,
                       url: video.url,
-                      category: "PolkaVM",
+                      category: 'PolkaVM',
                     }}
                   />
                 ))}
@@ -169,9 +179,9 @@ export default function VideosPage() {
                     key={index}
                     video={{
                       title: `Technical Session ${index + 1}`,
-                      description: "Deep dive into Polkadot development concepts and techniques.",
+                      description: 'Deep dive into Polkadot development concepts and techniques.',
                       url: video.url,
-                      category: "Technical",
+                      category: 'Technical',
                     }}
                   />
                 ))}
@@ -185,9 +195,9 @@ export default function VideosPage() {
                     key={index}
                     video={{
                       title: `Community Call ${index + 1}`,
-                      description: "Join the Polkadot community discussions and updates.",
+                      description: 'Join the Polkadot community discussions and updates.',
                       url: video.url,
-                      category: "Community",
+                      category: 'Community',
                     }}
                   />
                 ))}
@@ -201,9 +211,9 @@ export default function VideosPage() {
                     key={index}
                     video={{
                       title: `General Video ${index + 1}`,
-                      description: "General information about Polkadot and blockchain technology.",
+                      description: 'General information about Polkadot and blockchain technology.',
                       url: video.url,
-                      category: "General",
+                      category: 'General',
                     }}
                   />
                 ))}
@@ -217,9 +227,12 @@ export default function VideosPage() {
       <section className="bg-gradient-to-r from-pink-600 to-purple-600 py-16 text-white">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="font-heading text-3xl font-bold sm:text-4xl">Ready to Apply What You've Learned?</h2>
+            <h2 className="font-heading text-3xl font-bold sm:text-4xl">
+              Ready to Apply What You've Learned?
+            </h2>
             <p className="mt-4 text-lg text-white/80">
-              Join our bootcamp to put your knowledge into practice with guided projects and expert mentorship.
+              Join our bootcamp to put your knowledge into practice with guided projects and expert
+              mentorship.
             </p>
             <div className="mt-8">
               <Button
@@ -233,11 +246,11 @@ export default function VideosPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }
 
 function VideoCard({ video }: { video: any }) {
-  const [isHovered, setIsHovered] = useState(false)
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <Card
@@ -247,7 +260,7 @@ function VideoCard({ video }: { video: any }) {
     >
       <div className="relative aspect-video w-full overflow-hidden">
         <iframe
-          src={`${video.url}${isHovered ? "&autoplay=1&mute=1" : ""}`}
+          src={`${video.url}${isHovered ? '&autoplay=1&mute=1' : ''}`}
           title={video.title}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
@@ -266,24 +279,26 @@ function VideoCard({ video }: { video: any }) {
           <Badge
             className={`
             ${
-              video.category === "Polkadot SDK"
-                ? "bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300"
-                : video.category === "PolkaVM"
-                  ? "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300"
-                  : video.category === "Technical"
-                    ? "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300"
-                    : video.category === "Community"
-                      ? "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300"
-                      : "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300"
+              video.category === 'Polkadot SDK'
+                ? 'bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300'
+                : video.category === 'PolkaVM'
+                  ? 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300'
+                  : video.category === 'Technical'
+                    ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300'
+                    : video.category === 'Community'
+                      ? 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300'
+                      : 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300'
             }
           `}
           >
             {video.category}
           </Badge>
         </div>
-        <h3 className="mb-2 line-clamp-2 text-lg font-bold text-gray-900 dark:text-white">{video.title}</h3>
+        <h3 className="mb-2 line-clamp-2 text-lg font-bold text-gray-900 dark:text-white">
+          {video.title}
+        </h3>
         <p className="line-clamp-2 text-sm text-gray-600 dark:text-gray-300">{video.description}</p>
       </CardContent>
     </Card>
-  )
+  );
 }

@@ -1,34 +1,34 @@
-import Link from "next/link"
-import Image from "next/image"
-import { Search, Filter, Star, Users } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { courses } from "@/constants"
-import CourseCard from "@/components/course-card"
-import AnimateInView from "@/components/animations/animate-in-view"
-import CoursePreviewDialog from "@/components/course-preview/course-preview-dialog"
+import Link from 'next/link';
+import Image from 'next/image';
+import { Search, Filter, Star, Users } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import { courses } from '@/constants';
+import CourseCard from '@/components/course-card';
+import AnimateInView from '@/components/animations/animate-in-view';
+import CoursePreviewDialog from '@/components/course-preview/course-preview-dialog';
 
 export default function CoursesPage() {
   // Enhanced course data with additional fields for the preview feature
   const enhancedCourses = courses.map((course, index) => ({
     id: `course-${index + 1}`,
     ...course,
-    instructor: "Dr. Alex Johnson",
-    instructorTitle: "Polkadot Core Developer",
-    instructorAvatar: "/images/avatar-1.png",
-    duration: "24 hours",
-    level: course.title.includes("Advanced")
-      ? "Advanced"
-      : course.title.includes("Intermediate")
-        ? "Intermediate"
-        : "Beginner",
+    instructor: 'Dr. Alex Johnson',
+    instructorTitle: 'Polkadot Core Developer',
+    instructorAvatar: '/images/avatar-1.png',
+    duration: '24 hours',
+    level: course.title.includes('Advanced')
+      ? 'Advanced'
+      : course.title.includes('Intermediate')
+        ? 'Intermediate'
+        : 'Beginner',
     students: 1200 + index * 300,
     rating: 4.5 + (Math.random() * 0.5 - 0.25),
     reviews: 120 + index * 30,
-    price: "$49.99",
-    videoUrl: "https://www.youtube.com/embed/xWp-83KYkXs?si=ETs8dhYv0z_Zd-MZ",
-  }))
+    price: '$49.99',
+    videoUrl: 'https://www.youtube.com/embed/xWp-83KYkXs?si=ETs8dhYv0z_Zd-MZ',
+  }));
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -99,38 +99,43 @@ export default function CoursesPage() {
                   Polkadot Developer Bootcamp
                 </h2>
                 <p className="mb-6 text-gray-600 dark:text-gray-300">
-                  A comprehensive course to master Polkadot development from scratch. Learn Substrate, ink! smart
-                  contracts, and parachain development through hands-on projects.
+                  A comprehensive course to master Polkadot development from scratch. Learn
+                  Substrate, ink! smart contracts, and parachain development through hands-on
+                  projects.
                 </p>
                 <div className="mb-6 flex flex-wrap gap-4">
                   <div className="flex items-center">
                     <Star className="mr-1 h-4 w-4 fill-yellow-400 text-yellow-400" />
-                    <span className="text-sm text-gray-600 dark:text-gray-300">4.9 (250 reviews)</span>
+                    <span className="text-sm text-gray-600 dark:text-gray-300">
+                      4.9 (250 reviews)
+                    </span>
                   </div>
                   <div className="flex items-center">
                     <Users className="mr-1 h-4 w-4 text-gray-500" />
-                    <span className="text-sm text-gray-600 dark:text-gray-300">2,500+ students</span>
+                    <span className="text-sm text-gray-600 dark:text-gray-300">
+                      2,500+ students
+                    </span>
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-4">
                   <CoursePreviewDialog
                     course={{
-                      id: "featured-course",
-                      title: "Polkadot Developer Bootcamp",
+                      id: 'featured-course',
+                      title: 'Polkadot Developer Bootcamp',
                       description:
-                        "A comprehensive course to master Polkadot development from scratch. Learn Substrate, ink! smart contracts, and parachain development through hands-on projects.",
-                      img: "/images/featured-course.png",
-                      instructor: "Dr. Alex Johnson",
-                      instructorTitle: "Polkadot Core Developer",
-                      instructorAvatar: "/images/avatar-1.png",
-                      duration: "40 hours",
-                      level: "All Levels",
+                        'A comprehensive course to master Polkadot development from scratch. Learn Substrate, ink! smart contracts, and parachain development through hands-on projects.',
+                      img: '/images/featured-course.png',
+                      instructor: 'Dr. Alex Johnson',
+                      instructorTitle: 'Polkadot Core Developer',
+                      instructorAvatar: '/images/avatar-1.png',
+                      duration: '40 hours',
+                      level: 'All Levels',
                       students: 2500,
                       rating: 4.9,
                       reviews: 250,
-                      price: "$99.99",
-                      url: "#",
-                      videoUrl: "https://www.youtube.com/embed/xWp-83KYkXs?si=ETs8dhYv0z_Zd-MZ",
+                      price: '$99.99',
+                      url: '#',
+                      videoUrl: 'https://www.youtube.com/embed/xWp-83KYkXs?si=ETs8dhYv0z_Zd-MZ',
                     }}
                   >
                     <Button variant="outline" className="rounded-full">
@@ -141,16 +146,6 @@ export default function CoursesPage() {
                     <Link href="#">Enroll Now</Link>
                   </Button>
                 </div>
-              </div>
-              <div className="relative hidden md:block">
-                <Image
-                  src="/images/featured-course.png"
-                  alt="Featured Course"
-                  width={600}
-                  height={400}
-                  className="h-full w-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-l from-transparent to-pink-600/20 dark:to-pink-900/30"></div>
               </div>
             </div>
           </div>
@@ -164,5 +159,5 @@ export default function CoursesPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

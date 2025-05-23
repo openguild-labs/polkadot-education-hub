@@ -1,54 +1,56 @@
-"use client"
+'use client';
 
-import type React from "react"
+import type React from 'react';
 
-import { useState, useRef, useEffect } from "react"
-import { motion } from "framer-motion"
-import CourseNode from "@/components/learning-path/course-node"
-import PathConnector from "@/components/learning-path/path-connector"
-import { Button } from "@/components/ui/button"
-import { ChevronDown, ChevronUp, ZoomIn, ZoomOut, RotateCw } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
+import { useState, useRef, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import CourseNode from '@/components/learning-path/course-node';
+import PathConnector from '@/components/learning-path/path-connector';
+import { Button } from '@/components/ui/button';
+import { ChevronDown, ChevronUp, ZoomIn, ZoomOut, RotateCw } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 
 interface Course {
-  id: string
-  title: string
-  description: string
-  level: "beginner" | "intermediate" | "advanced"
-  category: string
-  duration: string
-  prerequisites: string[]
-  position: { x: number; y: number }
+  id: string;
+  title: string;
+  description: string;
+  level: 'beginner' | 'intermediate' | 'advanced';
+  category: string;
+  duration: string;
+  prerequisites: string[];
+  position: { x: number; y: number };
 }
 
 interface LearningPathVisualizationProps {
-  courses: Course[]
+  courses: Course[];
 }
 
 export default function LearningPathVisualization({ courses }: LearningPathVisualizationProps) {
-  const [activeFilter, setActiveFilter] = useState<string | null>(null)
-  const [activeCourse, setActiveCourse] = useState<string | null>(null)
-  const [zoom, setZoom] = useState(1)
-  const [showFilters, setShowFilters] = useState(false)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [containerSize, setContainerSize] = useState({ width: 0, height: 0 })
-  const [pan, setPan] = useState({ x: 0, y: 0 })
-  const [isDragging, setIsDragging] = useState(false)
-  const [dragStart, setDragStart] = useState({ x: 0, y: 0 })
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const [activeCourse, setActiveCourse] = useState<string | null>(null);
+  const [zoom, setZoom] = useState(1);
+  const [showFilters, setShowFilters] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
+  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
 
   // Extract unique categories
-  const categories = Array.from(new Set(courses.map((course) => course.category)))
+  const categories = Array.from(new Set(courses.map(course => course.category)));
 
   // Filter courses based on active filter
-  const filteredCourses = activeFilter ? courses.filter((course) => course.category === activeFilter) : courses
+  const filteredCourses = activeFilter
+    ? courses.filter(course => course.category === activeFilter)
+    : courses;
 
   // Calculate connections between courses
-  const connections = courses.flatMap((course) =>
-    course.prerequisites.map((prereqId) => ({
+  const connections = courses.flatMap(course =>
+    course.prerequisites.map(prereqId => ({
       from: prereqId,
       to: course.id,
-    })),
-  )
+    }))
+  );
 
   // Handle window resize
   useEffect(() => {
@@ -57,20 +59,20 @@ export default function LearningPathVisualization({ courses }: LearningPathVisua
         setContainerSize({
           width: containerRef.current.offsetWidth,
           height: containerRef.current.offsetHeight,
-        })
+        });
       }
-    }
+    };
 
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Handle mouse down for panning
   const handleMouseDown = (e: React.MouseEvent) => {
-    setIsDragging(true)
-    setDragStart({ x: e.clientX - pan.x, y: e.clientY - pan.y })
-  }
+    setIsDragging(true);
+    setDragStart({ x: e.clientX - pan.x, y: e.clientY - pan.y });
+  };
 
   // Handle mouse move for panning
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -78,37 +80,37 @@ export default function LearningPathVisualization({ courses }: LearningPathVisua
       setPan({
         x: e.clientX - dragStart.x,
         y: e.clientY - dragStart.y,
-      })
+      });
     }
-  }
+  };
 
   // Handle mouse up for panning
   const handleMouseUp = () => {
-    setIsDragging(false)
-  }
+    setIsDragging(false);
+  };
 
   // Handle zoom in
   const handleZoomIn = () => {
-    setZoom(Math.min(zoom + 0.1, 1.5))
-  }
+    setZoom(Math.min(zoom + 0.1, 1.5));
+  };
 
   // Handle zoom out
   const handleZoomOut = () => {
-    setZoom(Math.max(zoom - 0.1, 0.5))
-  }
+    setZoom(Math.max(zoom - 0.1, 0.5));
+  };
 
   // Reset view
   const resetView = () => {
-    setZoom(1)
-    setPan({ x: 0, y: 0 })
-    setActiveFilter(null)
-    setActiveCourse(null)
-  }
+    setZoom(1);
+    setPan({ x: 0, y: 0 });
+    setActiveFilter(null);
+    setActiveCourse(null);
+  };
 
   // Handle course click
   const handleCourseClick = (courseId: string) => {
-    setActiveCourse(activeCourse === courseId ? null : courseId)
-  }
+    setActiveCourse(activeCourse === courseId ? null : courseId);
+  };
 
   return (
     <div className="flex h-full flex-col">
@@ -121,7 +123,8 @@ export default function LearningPathVisualization({ courses }: LearningPathVisua
             onClick={() => setShowFilters(!showFilters)}
             className="flex items-center gap-1"
           >
-            Filter by Category {showFilters ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+            Filter by Category{' '}
+            {showFilters ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
           </Button>
         </div>
         <div className="flex items-center gap-2">
@@ -141,7 +144,7 @@ export default function LearningPathVisualization({ courses }: LearningPathVisua
       {showFilters && (
         <motion.div
           initial={{ height: 0, opacity: 0 }}
-          animate={{ height: "auto", opacity: 1 }}
+          animate={{ height: 'auto', opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           className="mb-4 overflow-hidden"
         >
@@ -149,20 +152,20 @@ export default function LearningPathVisualization({ courses }: LearningPathVisua
             <Badge
               className={`cursor-pointer ${
                 activeFilter === null
-                  ? "bg-pink-100 text-pink-800 hover:bg-pink-200 dark:bg-pink-900/30 dark:text-pink-300"
-                  : "bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300"
+                  ? 'bg-pink-100 text-pink-800 hover:bg-pink-200 dark:bg-pink-900/30 dark:text-pink-300'
+                  : 'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300'
               }`}
               onClick={() => setActiveFilter(null)}
             >
               All Categories
             </Badge>
-            {categories.map((category) => (
+            {categories.map(category => (
               <Badge
                 key={category}
                 className={`cursor-pointer ${
                   activeFilter === category
-                    ? "bg-pink-100 text-pink-800 hover:bg-pink-200 dark:bg-pink-900/30 dark:text-pink-300"
-                    : "bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300"
+                    ? 'bg-pink-100 text-pink-800 hover:bg-pink-200 dark:bg-pink-900/30 dark:text-pink-300'
+                    : 'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300'
                 }`}
                 onClick={() => setActiveFilter(category)}
               >
@@ -205,7 +208,7 @@ export default function LearningPathVisualization({ courses }: LearningPathVisua
         <motion.div
           className="absolute h-full w-full"
           style={{
-            transformOrigin: "center center",
+            transformOrigin: 'center center',
             scale: zoom,
             x: pan.x,
             y: pan.y,
@@ -213,14 +216,17 @@ export default function LearningPathVisualization({ courses }: LearningPathVisua
         >
           {/* Draw connections first so they appear behind nodes */}
           {connections.map((connection, index) => {
-            const fromCourse = courses.find((c) => c.id === connection.from)
-            const toCourse = courses.find((c) => c.id === connection.to)
+            const fromCourse = courses.find(c => c.id === connection.from);
+            const toCourse = courses.find(c => c.id === connection.to);
 
-            if (!fromCourse || !toCourse) return null
+            if (!fromCourse || !toCourse) return null;
 
             // Only show connections for filtered courses
-            if (activeFilter && (fromCourse.category !== activeFilter || toCourse.category !== activeFilter)) {
-              return null
+            if (
+              activeFilter &&
+              (fromCourse.category !== activeFilter || toCourse.category !== activeFilter)
+            ) {
+              return null;
             }
 
             return (
@@ -230,11 +236,11 @@ export default function LearningPathVisualization({ courses }: LearningPathVisua
                 to={toCourse.position}
                 isHighlighted={activeCourse === connection.from || activeCourse === connection.to}
               />
-            )
+            );
           })}
 
           {/* Draw course nodes */}
-          {filteredCourses.map((course) => (
+          {filteredCourses.map(course => (
             <CourseNode
               key={course.id}
               course={course}
@@ -244,9 +250,9 @@ export default function LearningPathVisualization({ courses }: LearningPathVisua
                 activeCourse
                   ? activeCourse === course.id ||
                     connections.some(
-                      (conn) =>
+                      conn =>
                         (conn.from === activeCourse && conn.to === course.id) ||
-                        (conn.to === activeCourse && conn.from === course.id),
+                        (conn.to === activeCourse && conn.from === course.id)
                     )
                   : false
               }
@@ -259,16 +265,16 @@ export default function LearningPathVisualization({ courses }: LearningPathVisua
       {activeCourse && (
         <motion.div
           initial={{ height: 0, opacity: 0 }}
-          animate={{ height: "auto", opacity: 1 }}
+          animate={{ height: 'auto', opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           className="mt-4 overflow-hidden rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-800"
         >
           {(() => {
-            const course = courses.find((c) => c.id === activeCourse)
-            if (!course) return null
+            const course = courses.find(c => c.id === activeCourse);
+            if (!course) return null;
 
-            const prerequisites = courses.filter((c) => course.prerequisites.includes(c.id))
-            const nextCourses = courses.filter((c) => c.prerequisites.includes(course.id))
+            const prerequisites = courses.filter(c => course.prerequisites.includes(c.id));
+            const nextCourses = courses.filter(c => c.prerequisites.includes(course.id));
 
             return (
               <div>
@@ -281,11 +287,15 @@ export default function LearningPathVisualization({ courses }: LearningPathVisua
                     <p className="font-medium capitalize">{course.level}</p>
                   </div>
                   <div>
-                    <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400">Category</h4>
+                    <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                      Category
+                    </h4>
                     <p className="font-medium">{course.category}</p>
                   </div>
                   <div>
-                    <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400">Duration</h4>
+                    <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                      Duration
+                    </h4>
                     <p className="font-medium">{course.duration}</p>
                   </div>
                 </div>
@@ -295,15 +305,15 @@ export default function LearningPathVisualization({ courses }: LearningPathVisua
                     <h4 className="mb-2 font-medium">Prerequisites</h4>
                     {prerequisites.length > 0 ? (
                       <ul className="space-y-1">
-                        {prerequisites.map((prereq) => (
+                        {prerequisites.map(prereq => (
                           <li key={prereq.id} className="flex items-center">
                             <div
                               className={`mr-2 h-2 w-2 rounded-full ${
-                                prereq.level === "beginner"
-                                  ? "bg-green-500"
-                                  : prereq.level === "intermediate"
-                                    ? "bg-blue-500"
-                                    : "bg-purple-500"
+                                prereq.level === 'beginner'
+                                  ? 'bg-green-500'
+                                  : prereq.level === 'intermediate'
+                                    ? 'bg-blue-500'
+                                    : 'bg-purple-500'
                               }`}
                             ></div>
                             <button
@@ -324,15 +334,15 @@ export default function LearningPathVisualization({ courses }: LearningPathVisua
                     <h4 className="mb-2 font-medium">Next Courses</h4>
                     {nextCourses.length > 0 ? (
                       <ul className="space-y-1">
-                        {nextCourses.map((next) => (
+                        {nextCourses.map(next => (
                           <li key={next.id} className="flex items-center">
                             <div
                               className={`mr-2 h-2 w-2 rounded-full ${
-                                next.level === "beginner"
-                                  ? "bg-green-500"
-                                  : next.level === "intermediate"
-                                    ? "bg-blue-500"
-                                    : "bg-purple-500"
+                                next.level === 'beginner'
+                                  ? 'bg-green-500'
+                                  : next.level === 'intermediate'
+                                    ? 'bg-blue-500'
+                                    : 'bg-purple-500'
                               }`}
                             ></div>
                             <button
@@ -351,13 +361,15 @@ export default function LearningPathVisualization({ courses }: LearningPathVisua
                 </div>
 
                 <div className="mt-4 flex justify-end">
-                  <Button className="rounded-full bg-pink-600 hover:bg-pink-500">View Course</Button>
+                  <Button className="rounded-full bg-pink-600 hover:bg-pink-500">
+                    View Course
+                  </Button>
                 </div>
               </div>
-            )
+            );
           })()}
         </motion.div>
       )}
     </div>
-  )
+  );
 }

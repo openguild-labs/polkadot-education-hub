@@ -1,27 +1,30 @@
-"use client"
+'use client';
 
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { Star, ThumbsUp, Filter, Search } from "lucide-react"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
-import Image from "next/image"
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Star, ThumbsUp, Filter, Search } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Progress } from '@/components/ui/progress';
+import Image from 'next/image';
 
 interface CoursePreviewReviewsProps {
-  rating: number
-  reviews: number
+  rating: number;
+  reviews: number;
 }
 
-export default function CoursePreviewReviews({ rating, reviews: totalReviews }: CoursePreviewReviewsProps) {
-  const [activeFilter, setActiveFilter] = useState("all")
+export default function CoursePreviewReviews({
+  rating,
+  reviews: totalReviews,
+}: CoursePreviewReviewsProps) {
+  const [activeFilter, setActiveFilter] = useState('all');
 
   const reviewData = [
     {
       id: 1,
-      name: "Alex Johnson",
-      avatar: "/images/avatar-1.png",
-      date: "2 months ago",
+      name: 'Alex Johnson',
+      avatar: '/images/avatar-1.png',
+      date: '2 months ago',
       rating: 5,
       comment:
         "This course exceeded my expectations! The instructor explains complex Polkadot concepts in a way that's easy to understand. The hands-on projects really helped solidify my understanding.",
@@ -30,20 +33,20 @@ export default function CoursePreviewReviews({ rating, reviews: totalReviews }: 
     },
     {
       id: 2,
-      name: "Sarah Chen",
-      avatar: "/images/avatar-2.png",
-      date: "1 month ago",
+      name: 'Sarah Chen',
+      avatar: '/images/avatar-2.png',
+      date: '1 month ago',
       rating: 4,
       comment:
-        "Great course overall. The content is comprehensive and well-structured. I especially enjoyed the sections on parachain development. My only suggestion would be to add more examples for the more advanced topics.",
+        'Great course overall. The content is comprehensive and well-structured. I especially enjoyed the sections on parachain development. My only suggestion would be to add more examples for the more advanced topics.',
       helpful: 18,
       isHelpful: false,
     },
     {
       id: 3,
-      name: "Michael Rodriguez",
-      avatar: "/images/avatar-3.png",
-      date: "3 weeks ago",
+      name: 'Michael Rodriguez',
+      avatar: '/images/avatar-3.png',
+      date: '3 weeks ago',
       rating: 5,
       comment:
         "As someone coming from Ethereum development, this course made the transition to Polkadot seamless. The instructor's deep knowledge of both ecosystems really shines through. Highly recommended!",
@@ -52,69 +55,69 @@ export default function CoursePreviewReviews({ rating, reviews: totalReviews }: 
     },
     {
       id: 4,
-      name: "Emily Wong",
-      avatar: "/images/avatar-4.png",
-      date: "2 weeks ago",
+      name: 'Emily Wong',
+      avatar: '/images/avatar-4.png',
+      date: '2 weeks ago',
       rating: 3,
       comment:
-        "The course content is good, but I found some sections moved too quickly. Would have appreciated more time spent on the fundamentals before diving into advanced topics. Still learned a lot though!",
+        'The course content is good, but I found some sections moved too quickly. Would have appreciated more time spent on the fundamentals before diving into advanced topics. Still learned a lot though!',
       helpful: 7,
       isHelpful: false,
     },
-  ]
+  ];
 
-  const [reviews, setReviews] = useState(reviewData)
+  const [reviews, setReviews] = useState(reviewData);
 
   const handleHelpful = (id: number) => {
     setReviews(
-      reviews.map((review) => {
+      reviews.map(review => {
         if (review.id === id) {
           return {
             ...review,
             helpful: review.isHelpful ? review.helpful - 1 : review.helpful + 1,
             isHelpful: !review.isHelpful,
-          }
+          };
         }
-        return review
-      }),
-    )
-  }
+        return review;
+      })
+    );
+  };
 
   const filterReviews = (filter: string) => {
-    setActiveFilter(filter)
-  }
+    setActiveFilter(filter);
+  };
 
   const getFilteredReviews = () => {
     switch (activeFilter) {
-      case "5star":
-        return reviews.filter((review) => review.rating === 5)
-      case "4star":
-        return reviews.filter((review) => review.rating === 4)
-      case "3star":
-        return reviews.filter((review) => review.rating === 3)
-      case "2star":
-        return reviews.filter((review) => review.rating === 2)
-      case "1star":
-        return reviews.filter((review) => review.rating === 1)
+      case '5star':
+        return reviews.filter(review => review.rating === 5);
+      case '4star':
+        return reviews.filter(review => review.rating === 4);
+      case '3star':
+        return reviews.filter(review => review.rating === 3);
+      case '2star':
+        return reviews.filter(review => review.rating === 2);
+      case '1star':
+        return reviews.filter(review => review.rating === 1);
       default:
-        return reviews
+        return reviews;
     }
-  }
+  };
 
-  const filteredReviews = getFilteredReviews()
+  const filteredReviews = getFilteredReviews();
 
   // Calculate rating distribution
   const ratingDistribution = [
-    { stars: 5, count: reviews.filter((r) => r.rating === 5).length, percentage: 0 },
-    { stars: 4, count: reviews.filter((r) => r.rating === 4).length, percentage: 0 },
-    { stars: 3, count: reviews.filter((r) => r.rating === 3).length, percentage: 0 },
-    { stars: 2, count: reviews.filter((r) => r.rating === 2).length, percentage: 0 },
-    { stars: 1, count: reviews.filter((r) => r.rating === 1).length, percentage: 0 },
-  ]
+    { stars: 5, count: reviews.filter(r => r.rating === 5).length, percentage: 0 },
+    { stars: 4, count: reviews.filter(r => r.rating === 4).length, percentage: 0 },
+    { stars: 3, count: reviews.filter(r => r.rating === 3).length, percentage: 0 },
+    { stars: 2, count: reviews.filter(r => r.rating === 2).length, percentage: 0 },
+    { stars: 1, count: reviews.filter(r => r.rating === 1).length, percentage: 0 },
+  ];
 
-  ratingDistribution.forEach((item) => {
-    item.percentage = (item.count / reviews.length) * 100
-  })
+  ratingDistribution.forEach(item => {
+    item.percentage = (item.count / reviews.length) * 100;
+  });
 
   return (
     <div className="space-y-6">
@@ -143,28 +146,35 @@ export default function CoursePreviewReviews({ rating, reviews: totalReviews }: 
                     key={i}
                     className={`h-4 w-4 ${
                       i < Math.floor(rating)
-                        ? "fill-yellow-400 text-yellow-400"
+                        ? 'fill-yellow-400 text-yellow-400'
                         : i < rating
-                          ? "fill-yellow-400/50 text-yellow-400"
-                          : "text-gray-300 dark:text-gray-600"
+                          ? 'fill-yellow-400/50 text-yellow-400'
+                          : 'text-gray-300 dark:text-gray-600'
                     }`}
                   />
                 ))}
                 <span className="ml-2 text-sm text-gray-600 dark:text-gray-300">Course Rating</span>
               </div>
             </div>
-            <div className="text-sm text-gray-600 dark:text-gray-300">{reviews.length} total reviews</div>
+            <div className="text-sm text-gray-600 dark:text-gray-300">
+              {reviews.length} total reviews
+            </div>
           </div>
 
           <div className="space-y-2">
-            {ratingDistribution.map((item) => (
+            {ratingDistribution.map(item => (
               <div key={item.stars} className="flex items-center gap-2">
                 <div className="flex w-16 items-center">
                   <span className="mr-1 text-sm">{item.stars}</span>
                   <Star className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400" />
                 </div>
-                <Progress value={item.percentage} className="h-2 flex-1 bg-gray-200 dark:bg-gray-700" />
-                <div className="w-10 text-right text-sm text-gray-600 dark:text-gray-300">{item.count}</div>
+                <Progress
+                  value={item.percentage}
+                  className="h-2 flex-1 bg-gray-200 dark:bg-gray-700"
+                />
+                <div className="w-10 text-right text-sm text-gray-600 dark:text-gray-300">
+                  {item.count}
+                </div>
               </div>
             ))}
           </div>
@@ -177,34 +187,34 @@ export default function CoursePreviewReviews({ rating, reviews: totalReviews }: 
           </div>
           <div className="flex flex-wrap gap-2">
             <Button
-              variant={activeFilter === "all" ? "default" : "outline"}
+              variant={activeFilter === 'all' ? 'default' : 'outline'}
               size="sm"
-              className={activeFilter === "all" ? "bg-pink-600 hover:bg-pink-500" : ""}
-              onClick={() => filterReviews("all")}
+              className={activeFilter === 'all' ? 'bg-pink-600 hover:bg-pink-500' : ''}
+              onClick={() => filterReviews('all')}
             >
               All Reviews
             </Button>
             <Button
-              variant={activeFilter === "5star" ? "default" : "outline"}
+              variant={activeFilter === '5star' ? 'default' : 'outline'}
               size="sm"
-              className={activeFilter === "5star" ? "bg-pink-600 hover:bg-pink-500" : ""}
-              onClick={() => filterReviews("5star")}
+              className={activeFilter === '5star' ? 'bg-pink-600 hover:bg-pink-500' : ''}
+              onClick={() => filterReviews('5star')}
             >
               5 Star
             </Button>
             <Button
-              variant={activeFilter === "4star" ? "default" : "outline"}
+              variant={activeFilter === '4star' ? 'default' : 'outline'}
               size="sm"
-              className={activeFilter === "4star" ? "bg-pink-600 hover:bg-pink-500" : ""}
-              onClick={() => filterReviews("4star")}
+              className={activeFilter === '4star' ? 'bg-pink-600 hover:bg-pink-500' : ''}
+              onClick={() => filterReviews('4star')}
             >
               4 Star
             </Button>
             <Button
-              variant={activeFilter === "3star" ? "default" : "outline"}
+              variant={activeFilter === '3star' ? 'default' : 'outline'}
               size="sm"
-              className={activeFilter === "3star" ? "bg-pink-600 hover:bg-pink-500" : ""}
-              onClick={() => filterReviews("3star")}
+              className={activeFilter === '3star' ? 'bg-pink-600 hover:bg-pink-500' : ''}
+              onClick={() => filterReviews('3star')}
             >
               3 Star
             </Button>
@@ -212,7 +222,7 @@ export default function CoursePreviewReviews({ rating, reviews: totalReviews }: 
               variant="outline"
               size="sm"
               className="flex items-center gap-1"
-              onClick={() => filterReviews("all")}
+              onClick={() => filterReviews('all')}
             >
               <Filter className="h-3.5 w-3.5" /> More Filters
             </Button>
@@ -232,7 +242,7 @@ export default function CoursePreviewReviews({ rating, reviews: totalReviews }: 
             <div className="mb-3 flex items-start justify-between">
               <div className="flex items-center">
                 <Image
-                  src={review.avatar || "/placeholder.svg?height=40&width=40"}
+                  src={review.avatar || '/placeholder.svg?height=40&width=40'}
                   alt={review.name}
                   width={40}
                   height={40}
@@ -246,12 +256,16 @@ export default function CoursePreviewReviews({ rating, reviews: totalReviews }: 
                         <Star
                           key={i}
                           className={`h-3.5 w-3.5 ${
-                            i < review.rating ? "fill-yellow-400 text-yellow-400" : "text-gray-300 dark:text-gray-600"
+                            i < review.rating
+                              ? 'fill-yellow-400 text-yellow-400'
+                              : 'text-gray-300 dark:text-gray-600'
                           }`}
                         />
                       ))}
                     </div>
-                    <span className="ml-2 text-xs text-gray-500 dark:text-gray-400">{review.date}</span>
+                    <span className="ml-2 text-xs text-gray-500 dark:text-gray-400">
+                      {review.date}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -262,7 +276,7 @@ export default function CoursePreviewReviews({ rating, reviews: totalReviews }: 
                 variant="ghost"
                 size="sm"
                 className={`flex items-center gap-1 text-xs ${
-                  review.isHelpful ? "text-pink-600 dark:text-pink-400" : ""
+                  review.isHelpful ? 'text-pink-600 dark:text-pink-400' : ''
                 }`}
                 onClick={() => handleHelpful(review.id)}
               >
@@ -283,5 +297,5 @@ export default function CoursePreviewReviews({ rating, reviews: totalReviews }: 
         </div>
       )}
     </div>
-  )
+  );
 }

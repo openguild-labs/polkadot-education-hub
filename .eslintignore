@@ -1,0 +1,7 @@
+.next
+node_modules
+out
+**/*.d.ts
+**/*.js
+!**/.next/**/*.js
+!**/*.config.js

@@ -1,130 +1,130 @@
-"use client"
+'use client';
 
-import type React from "react"
+import type React from 'react';
 
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Label } from "@/components/ui/label"
-import { CheckCircle2, XCircle, AlertCircle, ArrowRight, RotateCcw } from "lucide-react"
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
+import { CheckCircle2, XCircle, AlertCircle, ArrowRight, RotateCcw } from 'lucide-react';
 
 interface Question {
-  id: number
-  text: string
-  options: string[]
-  correctAnswer: number
-  explanation: string
+  id: number;
+  text: string;
+  options: string[];
+  correctAnswer: number;
+  explanation: string;
 }
 
 export default function CoursePreviewQuiz() {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
-  const [selectedOption, setSelectedOption] = useState<number | null>(null)
-  const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false)
-  const [score, setScore] = useState(0)
-  const [quizCompleted, setQuizCompleted] = useState(false)
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [selectedOption, setSelectedOption] = useState<number | null>(null);
+  const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false);
+  const [score, setScore] = useState(0);
+  const [quizCompleted, setQuizCompleted] = useState(false);
 
   const questions: Question[] = [
     {
       id: 1,
       text: "What is the main purpose of Polkadot's relay chain?",
       options: [
-        "To execute smart contracts",
-        "To provide shared security and interoperability between parachains",
-        "To store user data",
-        "To mine new tokens",
+        'To execute smart contracts',
+        'To provide shared security and interoperability between parachains',
+        'To store user data',
+        'To mine new tokens',
       ],
       correctAnswer: 1,
       explanation:
-        "The relay chain is the central chain of Polkadot. Its main purpose is to provide shared security for the entire network and enable cross-chain interoperability between parachains.",
+        'The relay chain is the central chain of Polkadot. Its main purpose is to provide shared security for the entire network and enable cross-chain interoperability between parachains.',
     },
     {
       id: 2,
-      text: "Which programming language is primarily used for Substrate development?",
-      options: ["JavaScript", "Python", "Rust", "Solidity"],
+      text: 'Which programming language is primarily used for Substrate development?',
+      options: ['JavaScript', 'Python', 'Rust', 'Solidity'],
       correctAnswer: 2,
       explanation:
-        "Rust is the primary programming language used for Substrate development due to its performance, safety, and memory efficiency features.",
+        'Rust is the primary programming language used for Substrate development due to its performance, safety, and memory efficiency features.',
     },
     {
       id: 3,
-      text: "What is a parachain in the Polkadot ecosystem?",
+      text: 'What is a parachain in the Polkadot ecosystem?',
       options: [
-        "A parallel processing unit",
-        "A custom blockchain that connects to the Polkadot network",
-        "A type of cryptocurrency",
-        "A consensus algorithm",
+        'A parallel processing unit',
+        'A custom blockchain that connects to the Polkadot network',
+        'A type of cryptocurrency',
+        'A consensus algorithm',
       ],
       correctAnswer: 1,
       explanation:
-        "Parachains are custom, project-specific blockchains that connect to the Polkadot relay chain and benefit from its security and interoperability features.",
+        'Parachains are custom, project-specific blockchains that connect to the Polkadot relay chain and benefit from its security and interoperability features.',
     },
     {
       id: 4,
-      text: "What is ink! in the context of Polkadot development?",
+      text: 'What is ink! in the context of Polkadot development?',
       options: [
-        "A visualization library",
-        "A smart contract programming language",
-        "A testing framework",
-        "A deployment tool",
+        'A visualization library',
+        'A smart contract programming language',
+        'A testing framework',
+        'A deployment tool',
       ],
       correctAnswer: 1,
       explanation:
-        "ink! is a Rust-based programming language specifically designed for writing smart contracts on Substrate-based blockchains in the Polkadot ecosystem.",
+        'ink! is a Rust-based programming language specifically designed for writing smart contracts on Substrate-based blockchains in the Polkadot ecosystem.',
     },
     {
       id: 5,
-      text: "What does XCM stand for in Polkadot?",
+      text: 'What does XCM stand for in Polkadot?',
       options: [
-        "Cross-Chain Mining",
-        "Cross-Chain Messaging",
-        "Extended Chain Management",
-        "External Chain Monitoring",
+        'Cross-Chain Mining',
+        'Cross-Chain Messaging',
+        'Extended Chain Management',
+        'External Chain Monitoring',
       ],
       correctAnswer: 1,
       explanation:
         "XCM stands for Cross-Chain Messaging. It's a format for communication between different chains in the Polkadot ecosystem, enabling interoperability.",
     },
-  ]
+  ];
 
-  const currentQuestion = questions[currentQuestionIndex]
+  const currentQuestion = questions[currentQuestionIndex];
 
   const handleOptionSelect = (index: number) => {
     if (!isAnswerSubmitted) {
-      setSelectedOption(index)
+      setSelectedOption(index);
     }
-  }
+  };
 
   const handleSubmitAnswer = () => {
-    if (selectedOption === null) return
+    if (selectedOption === null) return;
 
-    setIsAnswerSubmitted(true)
+    setIsAnswerSubmitted(true);
     if (selectedOption === currentQuestion.correctAnswer) {
-      setScore(score + 1)
+      setScore(score + 1);
     }
-  }
+  };
 
   const handleNextQuestion = () => {
     if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1)
-      setSelectedOption(null)
-      setIsAnswerSubmitted(false)
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setSelectedOption(null);
+      setIsAnswerSubmitted(false);
     } else {
-      setQuizCompleted(true)
+      setQuizCompleted(true);
     }
-  }
+  };
 
   const resetQuiz = () => {
-    setCurrentQuestionIndex(0)
-    setSelectedOption(null)
-    setIsAnswerSubmitted(false)
-    setScore(0)
-    setQuizCompleted(false)
-  }
+    setCurrentQuestionIndex(0);
+    setSelectedOption(null);
+    setIsAnswerSubmitted(false);
+    setScore(0);
+    setQuizCompleted(false);
+  };
 
   const getProgressPercentage = () => {
-    return ((currentQuestionIndex + 1) / questions.length) * 100
-  }
+    return ((currentQuestionIndex + 1) / questions.length) * 100;
+  };
 
   return (
     <div className="space-y-6">
@@ -167,13 +167,13 @@ export default function CoursePreviewQuiz() {
                     className={`relative flex items-center rounded-lg border p-4 transition-colors ${
                       isAnswerSubmitted
                         ? index === currentQuestion.correctAnswer
-                          ? "border-green-200 bg-green-50 dark:border-green-900/50 dark:bg-green-900/20"
+                          ? 'border-green-200 bg-green-50 dark:border-green-900/50 dark:bg-green-900/20'
                           : selectedOption === index
-                            ? "border-red-200 bg-red-50 dark:border-red-900/50 dark:bg-red-900/20"
-                            : "border-gray-200 dark:border-gray-700"
+                            ? 'border-red-200 bg-red-50 dark:border-red-900/50 dark:bg-red-900/20'
+                            : 'border-gray-200 dark:border-gray-700'
                         : selectedOption === index
-                          ? "border-pink-200 bg-pink-50 dark:border-pink-900/50 dark:bg-pink-900/20"
-                          : "border-gray-200 dark:border-gray-700"
+                          ? 'border-pink-200 bg-pink-50 dark:border-pink-900/50 dark:bg-pink-900/20'
+                          : 'border-gray-200 dark:border-gray-700'
                     }`}
                     onClick={() => handleOptionSelect(index)}
                   >
@@ -202,14 +202,16 @@ export default function CoursePreviewQuiz() {
               {isAnswerSubmitted && (
                 <motion.div
                   initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
+                  animate={{ opacity: 1, height: 'auto' }}
                   className="mt-4 rounded-lg bg-blue-50 p-4 dark:bg-blue-900/20"
                 >
                   <div className="flex items-start gap-2">
                     <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-blue-500 dark:text-blue-400" />
                     <div>
                       <h5 className="font-medium text-blue-700 dark:text-blue-300">Explanation</h5>
-                      <p className="text-sm text-blue-600 dark:text-blue-200">{currentQuestion.explanation}</p>
+                      <p className="text-sm text-blue-600 dark:text-blue-200">
+                        {currentQuestion.explanation}
+                      </p>
                     </div>
                   </div>
                 </motion.div>
@@ -226,13 +228,16 @@ export default function CoursePreviewQuiz() {
                   Check Answer
                 </Button>
               ) : (
-                <Button onClick={handleNextQuestion} className="rounded-full bg-pink-600 hover:bg-pink-500">
+                <Button
+                  onClick={handleNextQuestion}
+                  className="rounded-full bg-pink-600 hover:bg-pink-500"
+                >
                   {currentQuestionIndex < questions.length - 1 ? (
                     <>
                       Next Question <ArrowRight className="ml-2 h-4 w-4" />
                     </>
                   ) : (
-                    "Complete Quiz"
+                    'Complete Quiz'
                   )}
                 </Button>
               )}
@@ -260,10 +265,10 @@ export default function CoursePreviewQuiz() {
                     animate={{ width: `${(score / questions.length) * 100}%` }}
                     className={`absolute left-0 top-0 h-full rounded-full ${
                       score / questions.length >= 0.7
-                        ? "bg-green-500"
+                        ? 'bg-green-500'
                         : score / questions.length >= 0.4
-                          ? "bg-yellow-500"
-                          : "bg-red-500"
+                          ? 'bg-yellow-500'
+                          : 'bg-red-500'
                     }`}
                     transition={{ duration: 1, delay: 0.5 }}
                   />
@@ -272,10 +277,10 @@ export default function CoursePreviewQuiz() {
               <div className="space-y-2">
                 <p className="text-gray-600 dark:text-gray-300">
                   {score / questions.length >= 0.7
-                    ? "Great job! You have a good understanding of Polkadot concepts."
+                    ? 'Great job! You have a good understanding of Polkadot concepts.'
                     : score / questions.length >= 0.4
                       ? "Good effort! You're on your way to understanding Polkadot."
-                      : "Keep learning! The course will help you understand these concepts better."}
+                      : 'Keep learning! The course will help you understand these concepts better.'}
                 </p>
               </div>
             </div>
@@ -284,13 +289,15 @@ export default function CoursePreviewQuiz() {
               <Button onClick={resetQuiz} variant="outline" className="rounded-full">
                 <RotateCcw className="mr-2 h-4 w-4" /> Try Again
               </Button>
-              <Button className="rounded-full bg-pink-600 hover:bg-pink-500">Enroll in Full Course</Button>
+              <Button className="rounded-full bg-pink-600 hover:bg-pink-500">
+                Enroll in Full Course
+              </Button>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
     </div>
-  )
+  );
 }
 
 function Trophy(props: React.SVGProps<SVGSVGElement>) {
@@ -314,5 +321,5 @@ function Trophy(props: React.SVGProps<SVGSVGElement>) {
       <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
       <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
     </svg>
-  )
+  );
 }

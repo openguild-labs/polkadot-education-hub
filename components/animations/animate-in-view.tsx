@@ -1,123 +1,131 @@
-"use client"
+'use client';
 
-import type React from "react"
+import type React from 'react';
 
-import { useEffect, useRef } from "react"
-import { motion, useAnimation, type Variant } from "framer-motion"
+import { useEffect, useRef } from 'react';
+import { motion, useAnimation, type Variant } from 'framer-motion';
 
-type AnimationVariant = "fadeIn" | "slideUp" | "slideDown" | "slideLeft" | "slideRight" | "scale" | "rotate" | "bounce"
+type AnimationVariant =
+  | 'fadeIn'
+  | 'slideUp'
+  | 'slideDown'
+  | 'slideLeft'
+  | 'slideRight'
+  | 'scale'
+  | 'rotate'
+  | 'bounce';
 
 interface AnimateInViewProps {
-  children: React.ReactNode
-  animation?: AnimationVariant
-  delay?: number
-  duration?: number
-  className?: string
-  threshold?: number
-  once?: boolean
+  children: React.ReactNode;
+  animation?: AnimationVariant;
+  delay?: number;
+  duration?: number;
+  className?: string;
+  threshold?: number;
+  once?: boolean;
 }
 
 export default function AnimateInView({
   children,
-  animation = "fadeIn",
+  animation = 'fadeIn',
   delay = 0,
   duration = 0.5,
-  className = "",
+  className = '',
   threshold = 0.1,
   once = true,
 }: AnimateInViewProps) {
-  const controls = useAnimation()
-  const ref = useRef<HTMLDivElement>(null)
+  const controls = useAnimation();
+  const ref = useRef<HTMLDivElement>(null);
 
   const getVariants = () => {
     const variants = {
       hidden: {} as Variant,
       visible: {} as Variant,
-    }
+    };
 
     switch (animation) {
-      case "fadeIn":
-        variants.hidden = { opacity: 0 }
-        variants.visible = { opacity: 1 }
-        break
-      case "slideUp":
-        variants.hidden = { opacity: 0, y: 50 }
-        variants.visible = { opacity: 1, y: 0 }
-        break
-      case "slideDown":
-        variants.hidden = { opacity: 0, y: -50 }
-        variants.visible = { opacity: 1, y: 0 }
-        break
-      case "slideLeft":
-        variants.hidden = { opacity: 0, x: 50 }
-        variants.visible = { opacity: 1, x: 0 }
-        break
-      case "slideRight":
-        variants.hidden = { opacity: 0, x: -50 }
-        variants.visible = { opacity: 1, x: 0 }
-        break
-      case "scale":
-        variants.hidden = { opacity: 0, scale: 0.8 }
-        variants.visible = { opacity: 1, scale: 1 }
-        break
-      case "rotate":
-        variants.hidden = { opacity: 0, rotate: -10 }
-        variants.visible = { opacity: 1, rotate: 0 }
-        break
-      case "bounce":
-        variants.hidden = { opacity: 0, y: 50 }
+      case 'fadeIn':
+        variants.hidden = { opacity: 0 };
+        variants.visible = { opacity: 1 };
+        break;
+      case 'slideUp':
+        variants.hidden = { opacity: 0, y: 50 };
+        variants.visible = { opacity: 1, y: 0 };
+        break;
+      case 'slideDown':
+        variants.hidden = { opacity: 0, y: -50 };
+        variants.visible = { opacity: 1, y: 0 };
+        break;
+      case 'slideLeft':
+        variants.hidden = { opacity: 0, x: 50 };
+        variants.visible = { opacity: 1, x: 0 };
+        break;
+      case 'slideRight':
+        variants.hidden = { opacity: 0, x: -50 };
+        variants.visible = { opacity: 1, x: 0 };
+        break;
+      case 'scale':
+        variants.hidden = { opacity: 0, scale: 0.8 };
+        variants.visible = { opacity: 1, scale: 1 };
+        break;
+      case 'rotate':
+        variants.hidden = { opacity: 0, rotate: -10 };
+        variants.visible = { opacity: 1, rotate: 0 };
+        break;
+      case 'bounce':
+        variants.hidden = { opacity: 0, y: 50 };
         variants.visible = {
           opacity: 1,
           y: 0,
           transition: {
-            type: "spring",
+            type: 'spring',
             stiffness: 300,
             damping: 20,
             duration,
             delay,
           },
-        }
-        break
+        };
+        break;
       default:
-        variants.hidden = { opacity: 0 }
-        variants.visible = { opacity: 1 }
+        variants.hidden = { opacity: 0 };
+        variants.visible = { opacity: 1 };
     }
 
-    return variants
-  }
+    return variants;
+  };
 
   useEffect(() => {
-    if (!ref.current) return
+    if (!ref.current) return;
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries
+      entries => {
+        const [entry] = entries;
         if (entry.isIntersecting) {
-          controls.start("visible")
+          controls.start('visible');
           if (once && ref.current) {
-            observer.unobserve(ref.current)
+            observer.unobserve(ref.current);
           }
         } else if (!once) {
-          controls.start("hidden")
+          controls.start('hidden');
         }
       },
-      { threshold },
-    )
+      { threshold }
+    );
 
-    observer.observe(ref.current)
+    observer.observe(ref.current);
 
     return () => {
       if (ref.current) {
-        observer.unobserve(ref.current)
+        observer.unobserve(ref.current);
       }
-    }
-  }, [controls, threshold, once])
+    };
+  }, [controls, threshold, once]);
 
-  const variants = getVariants()
+  const variants = getVariants();
   const transition =
-    animation === "bounce"
+    animation === 'bounce'
       ? {} // Transition is included in the variants for bounce
-      : { duration, ease: "easeOut", delay }
+      : { duration, ease: 'easeOut', delay };
 
   return (
     <motion.div
@@ -130,5 +138,5 @@ export default function AnimateInView({
     >
       {children}
     </motion.div>
-  )
+  );
 }

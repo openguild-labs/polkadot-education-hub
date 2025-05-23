@@ -1,11 +1,11 @@
-import { Card, CardContent, CardFooter } from "@/components/ui/card"
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
 
 interface VideoCardProps {
   video: {
-    title: string
-    description: string
-    url: string
-  }
+    title: string;
+    description: string;
+    url: string;
+  };
 }
 
 export default function VideoCard({ video }: VideoCardProps) {
@@ -27,5 +27,5 @@ export default function VideoCard({ video }: VideoCardProps) {
         <p className="line-clamp-2 text-sm text-gray-500 dark:text-gray-400">{video.description}</p>
       </CardFooter>
     </Card>
-  )
+  );
 }

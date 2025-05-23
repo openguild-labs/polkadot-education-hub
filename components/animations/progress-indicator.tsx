@@ -1,26 +1,26 @@
-"use client"
+'use client';
 
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 export default function ProgressIndicator() {
-  const [progress, setProgress] = useState(0)
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       // Calculate scroll progress
-      const scrollTop = window.scrollY
-      const docHeight = document.body.offsetHeight - window.innerHeight
-      const scrollProgress = scrollTop / docHeight
-      setProgress(scrollProgress)
-    }
+      const scrollTop = window.scrollY;
+      const docHeight = document.body.offsetHeight - window.innerHeight;
+      const scrollProgress = scrollTop / docHeight;
+      setProgress(scrollProgress);
+    };
 
     // Add scroll event listener
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener('scroll', handleScroll);
 
     // Remove event listener on cleanup
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <motion.div
@@ -30,5 +30,5 @@ export default function ProgressIndicator() {
       animate={{ opacity: progress > 0 ? 1 : 0 }}
       transition={{ duration: 0.3 }}
     />
-  )
+  );
 }

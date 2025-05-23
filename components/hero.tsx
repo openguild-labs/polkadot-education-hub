@@ -1,9 +1,9 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
-import AnimatedBackground from "@/components/animations/animated-background"
-import FloatingIcons from "@/components/animations/floating-icons"
-import AnimateInView from "@/components/animations/animate-in-view"
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
+import AnimatedBackground from '@/components/animations/animated-background';
+import FloatingIcons from '@/components/animations/floating-icons';
+import AnimateInView from '@/components/animations/animate-in-view';
 
 export default function Hero() {
   return (
@@ -21,8 +21,9 @@ export default function Hero() {
 
           <AnimateInView animation="slideUp" delay={0.2} duration={0.8}>
             <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
-              Your comprehensive resource for learning Polkadot blockchain development. From beginner courses to
-              advanced workshops, we provide everything you need to build on the Polkadot ecosystem.
+              Your comprehensive resource for learning Polkadot blockchain development. From
+              beginner courses to advanced workshops, we provide everything you need to build on the
+              Polkadot ecosystem.
             </p>
           </AnimateInView>
 
@@ -49,5 +50,5 @@ export default function Hero() {
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,13 +1,13 @@
-"use client"
+'use client';
 
-import { useState } from "react"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import SectionHeader from "@/components/section-header"
-import VideoCard from "@/components/video-card"
-import { technicalVideos, communityCallVideos, generalVideos } from "@/constants"
+import { useState } from 'react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import SectionHeader from '@/components/section-header';
+import VideoCard from '@/components/video-card';
+import { technicalVideos, communityCallVideos, generalVideos } from '@/constants';
 
 export default function TechnicalVideosSection() {
-  const [activeTab, setActiveTab] = useState("technical")
+  const [activeTab, setActiveTab] = useState('technical');
 
   return (
     <section className="py-16">
@@ -31,7 +31,7 @@ export default function TechnicalVideosSection() {
                 key={index}
                 video={{
                   title: `Technical Session ${index + 1}`,
-                  description: "Deep dive into Polkadot development concepts and techniques.",
+                  description: 'Deep dive into Polkadot development concepts and techniques.',
                   url: video.url,
                 }}
               />
@@ -46,7 +46,7 @@ export default function TechnicalVideosSection() {
                 key={index}
                 video={{
                   title: `Community Call ${index + 1}`,
-                  description: "Join the Polkadot community discussions and updates.",
+                  description: 'Join the Polkadot community discussions and updates.',
                   url: video.url,
                 }}
               />
@@ -61,7 +61,7 @@ export default function TechnicalVideosSection() {
                 key={index}
                 video={{
                   title: `General Video ${index + 1}`,
-                  description: "General information about Polkadot and blockchain technology.",
+                  description: 'General information about Polkadot and blockchain technology.',
                   url: video.url,
                 }}
               />
@@ -70,5 +70,5 @@ export default function TechnicalVideosSection() {
         </TabsContent>
       </Tabs>
     </section>
-  )
+  );
 }

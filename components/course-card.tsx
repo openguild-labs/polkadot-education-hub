@@ -1,36 +1,36 @@
-"use client"
+'use client';
 
-import { useState } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { motion } from "framer-motion"
-import { ArrowRight, Star, Users, Clock } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-import CoursePreviewDialog from "@/components/course-preview/course-preview-dialog"
+import { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { ArrowRight, Star, Users, Clock } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import CoursePreviewDialog from '@/components/course-preview/course-preview-dialog';
 
 interface CourseCardProps {
   course: {
-    id: string
-    title: string
-    description: string
-    img: string
-    instructor: string
-    instructorTitle: string
-    instructorAvatar: string
-    duration: string
-    level: string
-    students: number
-    rating: number
-    reviews: number
-    price: string
-    url: string
-    videoUrl?: string
-  }
-  index?: number
+    id: string;
+    title: string;
+    description: string;
+    img: string;
+    instructor: string;
+    instructorTitle: string;
+    instructorAvatar: string;
+    duration: string;
+    level: string;
+    students: number;
+    rating: number;
+    reviews: number;
+    price: string;
+    url: string;
+    videoUrl?: string;
+  };
+  index?: number;
 }
 
 export default function CourseCard({ course, index = 0 }: CourseCardProps) {
-  const [isHovered, setIsHovered] = useState(false)
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <motion.div
@@ -44,7 +44,7 @@ export default function CourseCard({ course, index = 0 }: CourseCardProps) {
       <div className="course-card h-full">
         <div className="course-card-image relative">
           <Image
-            src={course.img || "/placeholder.svg?height=340&width=600"}
+            src={course.img || '/placeholder.svg?height=340&width=600'}
             alt={course.title}
             width={600}
             height={340}
@@ -52,7 +52,7 @@ export default function CourseCard({ course, index = 0 }: CourseCardProps) {
           />
           <div
             className={`absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
-              isHovered ? "opacity-100" : "opacity-0"
+              isHovered ? 'opacity-100' : 'opacity-0'
             }`}
           >
             <CoursePreviewDialog course={course}>
@@ -97,7 +97,7 @@ export default function CourseCard({ course, index = 0 }: CourseCardProps) {
               rel="noopener noreferrer"
               className="flex items-center text-sm font-medium text-pink-600 transition-colors hover:text-pink-700 dark:text-pink-400 dark:hover:text-pink-300"
             >
-              View Course{" "}
+              View Course{' '}
               <ArrowRight className="ml-1 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
             <span className="font-medium text-gray-900 dark:text-white">{course.price}</span>
@@ -105,5 +105,5 @@ export default function CourseCard({ course, index = 0 }: CourseCardProps) {
         </div>
       </div>
     </motion.div>
-  )
+  );
 }

@@ -21,7 +21,7 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: 'Polkadot Builders - Education Hub',
+  title: 'Polkadot Education Hub',
   description: 'A comprehensive education hub for Polkadot blockchain developers',
   generator: 'v0.dev',
 };

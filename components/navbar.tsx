@@ -102,7 +102,7 @@ export default function Navbar() {
                 transition={{ type: 'spring', stiffness: 400, damping: 10 }}
               ></motion.div>
               <span className="font-heading text-xl font-bold text-gray-900 dark:text-white">
-                Polkadot Builders
+                Polkadot Education Hub
               </span>
             </Link>
           </motion.div>
@@ -127,7 +127,7 @@ export default function Navbar() {
                       onClick={e => toggleDropdown(e, item.name)}
                       onMouseEnter={() => setActiveDropdown(item.name)}
                       className={`flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
-                        pathname.startsWith(item.href)
+                        pathname?.startsWith(item.href)
                           ? 'bg-pink-50 text-pink-700 dark:bg-pink-900/20 dark:text-pink-300'
                           : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'
                       }`}
@@ -249,7 +249,7 @@ export default function Navbar() {
                       <button
                         onClick={e => toggleDropdown(e, item.name)}
                         className={`flex w-full items-center justify-between rounded-md px-3 py-2 text-base font-medium ${
-                          pathname.startsWith(item.href)
+                          pathname?.startsWith(item.href)
                             ? 'bg-pink-50 text-pink-700 dark:bg-pink-900/20 dark:text-pink-300'
                             : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'
                         }`}

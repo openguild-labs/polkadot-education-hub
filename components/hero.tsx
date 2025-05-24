@@ -15,7 +15,7 @@ export default function Hero() {
         <div className="mx-auto max-w-4xl text-center">
           <AnimateInView animation="fadeIn" duration={0.8}>
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
-              Polkadot Builders <span className="text-pink-600">Education Hub</span>
+              Polkadot <span className="text-pink-600">Education Hub</span>
             </h1>
           </AnimateInView>
 

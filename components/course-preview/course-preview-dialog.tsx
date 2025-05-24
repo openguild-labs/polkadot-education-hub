@@ -282,12 +282,9 @@ export default function CoursePreviewDialog({ course, children }: CoursePreviewD
                         </div>
 
                         <div className="mt-6">
-                          <div className="mb-2 text-2xl font-bold text-pink-600 dark:text-pink-400">
-                            {course.price}
-                          </div>
                           <Button className="w-full rounded-full bg-pink-600 hover:bg-pink-500">
                             <Link href={course.url} target="_blank" rel="noopener noreferrer">
-                              Enroll Now
+                              View Course
                             </Link>
                           </Button>
                         </div>
@@ -321,18 +318,12 @@ export default function CoursePreviewDialog({ course, children }: CoursePreviewD
                 className="border-t border-gray-200 bg-gray-50 p-4 dark:border-gray-800 dark:bg-gray-900"
               >
                 <div className="flex items-center justify-between">
-                  {/* <div>
-                    <div className="text-lg font-bold text-pink-600 dark:text-pink-400">
-                      {course.price}
-                    </div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">Lifetime access</div>
-                  </div> */}
                   <Button
                     size="lg"
                     className="rounded-full bg-pink-600 hover:bg-pink-500 hover:shadow-md hover:shadow-pink-200 dark:hover:shadow-pink-900/20"
                   >
                     <Link href={course.url} target="_blank" rel="noopener noreferrer">
-                      Enroll Now
+                      View Course
                     </Link>
                   </Button>
                 </div>

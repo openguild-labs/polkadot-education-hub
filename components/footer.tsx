@@ -10,7 +10,7 @@ export default function Footer() {
             <Link href="/" className="flex items-center space-x-2">
               <div className="h-10 w-10 rounded-full bg-gradient-to-br from-pink-500 to-purple-600"></div>
               <span className="font-heading text-xl font-bold text-gray-900 dark:text-white">
-                Polkadot Builders
+                Polkadot Education Hub
               </span>
             </Link>
             <p className="mt-4 max-w-md text-gray-600 dark:text-gray-300">
@@ -163,7 +163,7 @@ export default function Footer() {
 
         <div className="mt-12 border-t border-gray-200 pt-8 dark:border-gray-800">
           <p className="text-center text-sm text-gray-500 dark:text-gray-400">
-            &copy; {new Date().getFullYear()} Polkadot Builders Education Hub. All rights reserved.
+            &copy; {new Date().getFullYear()} Polkadot Education Hub. All rights reserved.
           </p>
         </div>
       </div>

@@ -289,9 +289,7 @@ export default function CoursePreviewQuiz() {
               <Button onClick={resetQuiz} variant="outline" className="rounded-full">
                 <RotateCcw className="mr-2 h-4 w-4" /> Try Again
               </Button>
-              <Button className="rounded-full bg-pink-600 hover:bg-pink-500">
-                Enroll in Full Course
-              </Button>
+              <Button className="rounded-full bg-pink-600 hover:bg-pink-500">View Course</Button>
             </div>
           </motion.div>
         )}

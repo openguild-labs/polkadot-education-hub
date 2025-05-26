@@ -12,7 +12,10 @@ export default function Hero() {
       <FloatingIcons />
 
       <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 lg:py-40">
-        <div className="mx-auto max-w-4xl text-center">
+        <div className="mx-auto max-w-4xl flex items-center justify-center flex-col text-center">
+          <AnimateInView animation="fadeIn" duration={0.8}>
+            <img src="/images/og-education-logo.png" alt="Logo" className="h-[140px] w-[140px]" />
+          </AnimateInView>
           <AnimateInView animation="fadeIn" duration={0.8}>
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
               Polkadot <span className="text-pink-600">Education Hub</span>

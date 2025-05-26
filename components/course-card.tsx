@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ArrowRight, Star, Users, Clock } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import CoursePreviewDialog from '@/components/course-preview/course-preview-dialog';
 
@@ -17,14 +17,8 @@ interface CourseCardProps {
     instructor: string;
     instructorTitle: string;
     instructorAvatar: string;
-    duration: string;
     level: string;
-    students: number;
-    rating: number;
-    reviews: number;
-    price: string;
     url: string;
-    videoUrl?: string;
   };
   index?: number;
 }
@@ -71,25 +65,9 @@ export default function CourseCard({ course, index = 0 }: CourseCardProps) {
             <Badge className="bg-pink-100 text-pink-800 hover:bg-pink-200 dark:bg-pink-900/30 dark:text-pink-300 dark:hover:bg-pink-900/50">
               {course.level}
             </Badge>
-            <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-              <Star className="mr-1 h-4 w-4 fill-yellow-400 text-yellow-400" />
-              <span>
-                {course.rating} ({course.reviews})
-              </span>
-            </div>
           </div>
           <h3 className="course-card-title">{course.title}</h3>
           <p className="course-card-description">{course.description}</p>
-          <div className="mt-4 flex items-center gap-4 text-sm text-gray-600 dark:text-gray-300">
-            <div className="flex items-center">
-              <Clock className="mr-1 h-4 w-4 text-gray-400" />
-              {course.duration}
-            </div>
-            <div className="flex items-center">
-              <Users className="mr-1 h-4 w-4 text-gray-400" />
-              {course.students.toLocaleString()} students
-            </div>
-          </div>
           <div className="course-card-footer">
             <Link
               href={course.url}
@@ -100,7 +78,6 @@ export default function CourseCard({ course, index = 0 }: CourseCardProps) {
               View Course{' '}
               <ArrowRight className="ml-1 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
-            <span className="font-medium text-gray-900 dark:text-white">{course.price}</span>
           </div>
         </div>
       </div>

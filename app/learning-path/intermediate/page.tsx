@@ -5,9 +5,9 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { LearningResourceLevel } from '@/constants';
 
-export default function BeginnerResourcesPage() {
-  const beginnerResources = learningResources.filter(
-    resource => resource.Level === LearningResourceLevel.BEGINNER
+export default function IntermediateResourcesPage() {
+  const intermediateResources = learningResources.filter(
+    resource => resource.Level === LearningResourceLevel.INTERMEDIATE
   );
 
   return (
@@ -22,11 +22,12 @@ export default function BeginnerResourcesPage() {
               </Link>
             </Button>
             <h1 className="font-heading text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
-              Beginner Resources
+              Intermediate Resources
             </h1>
             <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
-              Start your Polkadot journey with these beginner-friendly resources. Learn the
-              fundamentals of blockchain, Rust programming, and get introduced to Substrate.
+              Resources for builders who are already familiar with the fundamentals of blockchain,
+              Rust programming, and Polkadot SDK. These resources will help you build more complex
+              applications and understand the inner workings of the Polkadot network.
             </p>
           </div>
         </div>
@@ -37,7 +38,7 @@ export default function BeginnerResourcesPage() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-5xl">
             <div className="grid gap-6 sm:grid-cols-1 lg:grid-cols-2">
-              {beginnerResources.map((resource, index) => (
+              {intermediateResources.map((resource, index) => (
                 <LearningResourceCard key={index} resource={resource} />
               ))}
             </div>

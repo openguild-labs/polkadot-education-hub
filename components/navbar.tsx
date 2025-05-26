@@ -16,18 +16,9 @@ export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const pathname = usePathname();
 
-  const navigation = [
+  const navigation: { name: string; href: string; submenu?: { name: string; href: string }[] }[] = [
     { name: 'Home', href: '/' },
-    {
-      name: 'Courses',
-      href: '/courses',
-      submenu: [
-        { name: 'All Courses', href: '/courses' },
-        { name: 'Substrate Courses', href: '/courses/substrate' },
-        { name: 'Rust Courses', href: '/courses/rust' },
-        { name: 'ink! Smart Contracts', href: '/courses/ink' },
-      ],
-    },
+    { name: 'Courses', href: '/courses' },
     { name: 'Bootcamp', href: '/bootcamp' },
     { name: 'Workshops', href: '/workshops' },
     { name: 'Videos', href: '/videos' },
@@ -96,11 +87,11 @@ export default function Navbar() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <Link href="/" className="flex items-center space-x-2">
-              <motion.div
-                className="h-10 w-10 rounded-full bg-gradient-to-br from-pink-500 to-purple-600 shadow-md shadow-pink-200 dark:shadow-pink-900/20"
-                whileHover={{ scale: 1.1 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-              ></motion.div>
+              <img
+                src="/images/og-education-logo.png"
+                alt="Logo"
+                className="h-12 w-12 rounded-full"
+              />
               <span className="font-heading text-xl font-bold text-gray-900 dark:text-white">
                 Polkadot Education Hub
               </span>
@@ -196,7 +187,6 @@ export default function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <ModeToggle />
             <Button
               variant="outline"
               className="hidden rounded-full border-pink-200 dark:border-pink-900/50 md:inline-flex hover:bg-pink-50 hover:text-pink-600 dark:hover:bg-pink-900/20 dark:hover:text-pink-300 transition-all duration-300"

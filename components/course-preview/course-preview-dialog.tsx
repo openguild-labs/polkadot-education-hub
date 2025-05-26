@@ -7,13 +7,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Play, X, ChevronRight, Star, Clock, Award, Users, BookOpen } from 'lucide-react';
+import { Play, X, ChevronRight, Award, BookOpen } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import CoursePreviewCurriculum from '@/components/course-preview/course-preview-curriculum';
-import CoursePreviewVideo from '@/components/course-preview/course-preview-video';
 import CoursePreviewQuiz from '@/components/course-preview/course-preview-quiz';
-import CoursePreviewReviews from '@/components/course-preview/course-preview-reviews';
 
 interface CoursePreviewDialogProps {
   course: {
@@ -24,14 +22,8 @@ interface CoursePreviewDialogProps {
     instructor: string;
     instructorTitle: string;
     instructorAvatar: string;
-    duration: string;
     level: string;
-    students: number;
-    rating: number;
-    reviews: number;
-    price: string;
     url: string;
-    videoUrl?: string;
   };
   children?: React.ReactNode;
 }
@@ -86,27 +78,6 @@ export default function CoursePreviewDialog({ course, children }: CoursePreviewD
                   >
                     {course.title}
                   </motion.h2>
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                    className="mt-2 flex items-center gap-3 text-white/80"
-                  >
-                    <div className="flex items-center">
-                      <Star className="mr-1 h-4 w-4 fill-yellow-500 text-yellow-500" />
-                      <span>
-                        {course.rating} ({course.reviews} reviews)
-                      </span>
-                    </div>
-                    <div className="flex items-center">
-                      <Users className="mr-1 h-4 w-4" />
-                      <span>{course.students.toLocaleString()} students</span>
-                    </div>
-                    <div className="flex items-center">
-                      <Clock className="mr-1 h-4 w-4" />
-                      <span>{course.duration}</span>
-                    </div>
-                  </motion.div>
                 </div>
               </div>
 
@@ -250,26 +221,10 @@ export default function CoursePreviewDialog({ course, children }: CoursePreviewD
                         <h3 className="mb-4 text-lg font-bold">Course Details</h3>
                         <div className="space-y-4">
                           <div className="flex items-center">
-                            <Clock className="mr-3 h-5 w-5 text-pink-500" />
-                            <div>
-                              <p className="text-sm font-medium">Duration</p>
-                              <p className="text-gray-600 dark:text-gray-300">{course.duration}</p>
-                            </div>
-                          </div>
-                          <div className="flex items-center">
                             <BookOpen className="mr-3 h-5 w-5 text-pink-500" />
                             <div>
                               <p className="text-sm font-medium">Level</p>
                               <p className="text-gray-600 dark:text-gray-300">{course.level}</p>
-                            </div>
-                          </div>
-                          <div className="flex items-center">
-                            <Users className="mr-3 h-5 w-5 text-pink-500" />
-                            <div>
-                              <p className="text-sm font-medium">Students</p>
-                              <p className="text-gray-600 dark:text-gray-300">
-                                {course.students.toLocaleString()}
-                              </p>
                             </div>
                           </div>
                           <div className="flex items-center">
@@ -296,16 +251,12 @@ export default function CoursePreviewDialog({ course, children }: CoursePreviewD
                     <CoursePreviewCurriculum />
                   </TabsContent>
 
-                  <TabsContent value="preview">
-                    <CoursePreviewVideo videoUrl={course.videoUrl} />
-                  </TabsContent>
+                  {/* <TabsContent value="preview"> */}
+                  {/* <CoursePreviewVideo videoUrl={course.videoUrl} /> */}
+                  {/* </TabsContent> */}
 
                   <TabsContent value="quiz">
                     <CoursePreviewQuiz />
-                  </TabsContent>
-
-                  <TabsContent value="reviews">
-                    <CoursePreviewReviews rating={course.rating} reviews={course.reviews} />
                   </TabsContent>
                 </div>
               </Tabs>

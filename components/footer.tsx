@@ -8,7 +8,11 @@ export default function Footer() {
         <div className="grid gap-8 md:grid-cols-4">
           <div className="md:col-span-2">
             <Link href="/" className="flex items-center space-x-2">
-              <div className="h-10 w-10 rounded-full bg-gradient-to-br from-pink-500 to-purple-600"></div>
+              <img
+                src="/images/og-education-logo.png"
+                alt="Logo"
+                className="h-12 w-12 rounded-full"
+              />
               <span className="font-heading text-xl font-bold text-gray-900 dark:text-white">
                 Polkadot Education Hub
               </span>

@@ -17,7 +17,7 @@ export default function HomePage() {
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-4xl text-center">
               <AnimateInView animation="slideUp">
-                <h2 className="section-title">Why Learn Polkadot</h2>
+                <h2 className="section-title">Why Learn Polkadot?</h2>
                 <p className="section-description mx-auto">
                   Polkadot is a next-generation blockchain platform designed for innovation and
                   scalability
@@ -134,7 +134,7 @@ export default function HomePage() {
               </AnimateInView>
               <AnimateInView animation="scale" delay={0.4} className="text-center">
                 <div className="text-4xl font-bold">1,000+</div>
-                <div className="mt-2 text-white/80">Students Enrolled</div>
+                <div className="mt-2 text-white/80">Students Registered</div>
               </AnimateInView>
             </div>
           </div>

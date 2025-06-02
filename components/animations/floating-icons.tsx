@@ -16,15 +16,15 @@ import {
 
 export default function FloatingIcons() {
   const icons = [
-    { Component: Blocks, top: '10%', left: '5%', size: 20, duration: 8 },
-    { Component: Server, top: '20%', right: '10%', size: 24, duration: 6 },
-    { Component: Code, top: '70%', left: '15%', size: 22, duration: 7 },
-    { Component: Lock, top: '80%', right: '15%', size: 18, duration: 9 },
-    { Component: Database, top: '40%', left: '8%', size: 24, duration: 7.5 },
-    { Component: Globe, top: '30%', right: '5%', size: 22, duration: 8.2 },
-    { Component: Link, top: '60%', right: '10%', size: 20, duration: 6.8 },
-    { Component: Shield, top: '85%', left: '48%', size: 18, duration: 7.3 },
-    { Component: Layers, top: '15%', left: '45%', size: 24, duration: 8.8 },
+    { Component: Blocks, top: '10%', left: '15%', size: 25, duration: 8 },
+    { Component: Server, top: '20%', right: '10%', size: 30, duration: 6 },
+    { Component: Code, top: '70%', left: '15%', size: 27, duration: 7 },
+    { Component: Lock, top: '80%', right: '15%', size: 25, duration: 9 },
+    { Component: Database, top: '40%', left: '8%', size: 25, duration: 7.5 },
+    { Component: Globe, top: '30%', right: '5%', size: 25, duration: 8.2 },
+    { Component: Link, top: '60%', right: '10%', size: 25, duration: 6.8 },
+    { Component: Shield, top: '85%', left: '48%', size: 20, duration: 7.3 },
+    { Component: Layers, top: '15%', left: '25%', size: 27, duration: 8.8 },
     { Component: CircuitBoard, top: '50%', right: '3%', size: 22, duration: 7.7 },
   ];
 

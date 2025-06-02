@@ -1,16 +1,64 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { ArrowRight, Search, Filter, Calendar, Users, ExternalLink } from 'lucide-react';
+import { Search, Calendar, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
-import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import ResourceCard from '@/components/resource-card';
 import { workshops } from '@/constants';
 
+type OpenGraphData = {
+  title?: string;
+  description?: string;
+  image?: string;
+  url?: string;
+};
+
+const fetchOpenGraph = async (url: string): Promise<OpenGraphData> => {
+  try {
+    const response = await fetch(`/api/opengraph?url=${encodeURIComponent(url)}`);
+    if (!response.ok) throw new Error('Failed to fetch OpenGraph data');
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching OpenGraph data:', error);
+    return {};
+  }
+};
+
 export default function WorkshopsPage() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filterType, setFilterType] = useState<'all' | 'technical' | 'community' | 'conceptual'>(
+    'all'
+  );
+  const [ogData, setOgData] = useState<Record<string, OpenGraphData>>({});
+
+  // Fetch OpenGraph data for all workshops
+  useEffect(() => {
+    const fetchAllOpenGraphData = async () => {
+      const data: Record<string, OpenGraphData> = {};
+      for (const workshop of workshops) {
+        if (!workshop.img) {
+          // Only fetch if no image is provided
+          data[workshop.url] = await fetchOpenGraph(workshop.url);
+        }
+      }
+      setOgData(data);
+    };
+    fetchAllOpenGraphData();
+  }, []);
+
+  // Filter workshops based on search query
+  const filteredWorkshops = workshops.filter(
+    workshop =>
+      workshop.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      workshop.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   // Group workshops by category
-  const technicalWorkshops = workshops.filter(
+  const technicalWorkshops = filteredWorkshops.filter(
     w =>
       w.title.includes('Technical') ||
       w.title.includes('Substrate') ||
@@ -18,11 +66,11 @@ export default function WorkshopsPage() {
       w.title.includes('ink!')
   );
 
-  const communityWorkshops = workshops.filter(
+  const communityWorkshops = filteredWorkshops.filter(
     w => w.title.includes('Community') || w.title.includes('Call')
   );
 
-  const conceptualWorkshops = workshops.filter(
+  const conceptualWorkshops = filteredWorkshops.filter(
     w => !technicalWorkshops.includes(w) && !communityWorkshops.includes(w)
   );
 
@@ -39,21 +87,6 @@ export default function WorkshopsPage() {
               Hands-on workshop materials to help you learn by doing. These workshops cover a wide
               range of topics from basic Substrate concepts to advanced Polkadot features.
             </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Search and Filter */}
-      <div className="border-b border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-            <div className="relative w-full max-w-md">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-              <Input type="search" placeholder="Search workshops..." className="pl-10" />
-            </div>
-            <Button variant="outline" className="flex items-center gap-2">
-              <Filter className="h-4 w-4" /> Filter
-            </Button>
           </div>
         </div>
       </div>
@@ -80,12 +113,6 @@ export default function WorkshopsPage() {
                     <Calendar className="mr-2 h-4 w-4 text-pink-600 dark:text-pink-400" />
                     <span className="text-sm text-gray-600 dark:text-gray-300">
                       Last updated: May 2025
-                    </span>
-                  </div>
-                  <div className="flex items-center">
-                    <Users className="mr-2 h-4 w-4 text-pink-600 dark:text-pink-400" />
-                    <span className="text-sm text-gray-600 dark:text-gray-300">
-                      1,200+ participants
                     </span>
                   </div>
                 </div>
@@ -183,43 +210,26 @@ export default function WorkshopsPage() {
 }
 
 function WorkshopCard({ workshop }: { workshop: any }) {
+  const badges = [
+    workshop.title.includes('Substrate')
+      ? 'Substrate'
+      : workshop.title.includes('Rust')
+        ? 'Rust'
+        : workshop.title.includes('ink!')
+          ? 'ink!'
+          : workshop.title.includes('Community')
+            ? 'Community'
+            : 'Workshop',
+  ];
+
   return (
-    <Card className="group overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-pink-100/50 dark:bg-gray-800 dark:hover:shadow-pink-900/10">
-      <CardContent className="p-6">
-        <div className="mb-2 flex flex-wrap gap-2">
-          <Badge className="bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300">
-            {workshop.title.includes('Substrate')
-              ? 'Substrate'
-              : workshop.title.includes('Rust')
-                ? 'Rust'
-                : workshop.title.includes('ink!')
-                  ? 'ink!'
-                  : workshop.title.includes('Community')
-                    ? 'Community'
-                    : 'Workshop'}
-          </Badge>
-          {workshop.released !== false && (
-            <Badge
-              variant="outline"
-              className="border-green-200 bg-green-50 text-green-800 dark:border-green-900/50 dark:bg-green-900/20 dark:text-green-300"
-            >
-              Available
-            </Badge>
-          )}
-        </div>
-        <h3 className="mb-2 line-clamp-2 text-xl font-bold text-gray-900 dark:text-white">
-          {workshop.title}
-        </h3>
-        <p className="mb-4 line-clamp-3 text-gray-600 dark:text-gray-300">{workshop.description}</p>
-        <Link
-          href={workshop.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center text-sm font-medium text-pink-600 transition-colors hover:text-pink-700 dark:text-pink-400 dark:hover:text-pink-300"
-        >
-          View Workshop <ExternalLink className="ml-1 h-3 w-3" />
-        </Link>
-      </CardContent>
-    </Card>
+    <ResourceCard
+      title={workshop.title}
+      description={workshop.description}
+      url={workshop.url}
+      img={workshop.img}
+      badges={badges}
+      status={workshop.released !== false ? 'Available' : undefined}
+    />
   );
 }

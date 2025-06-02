@@ -4,6 +4,7 @@ import TestimonialSection from '@/components/testimonial-section';
 import CategoryShowcase from '@/components/category-showcase';
 import Hero from '@/components/hero';
 import AnimateInView from '@/components/animations/animate-in-view';
+import { courses, learningResources, technicalVideos, workshops } from '@/constants';
 
 export default function HomePage() {
   return (
@@ -121,15 +122,15 @@ export default function HomePage() {
           <div className="container mx-auto px-4">
             <div className="grid gap-6 rounded-2xl bg-gradient-to-r from-pink-600 to-purple-600 p-8 text-white md:grid-cols-4">
               <AnimateInView animation="scale" delay={0.1} className="text-center">
-                <div className="text-4xl font-bold">100+</div>
+                <div className="text-4xl font-bold">{learningResources.length}+</div>
                 <div className="mt-2 text-white/80">Learning Resources</div>
               </AnimateInView>
               <AnimateInView animation="scale" delay={0.2} className="text-center">
-                <div className="text-4xl font-bold">30+</div>
+                <div className="text-4xl font-bold">{courses.length + technicalVideos.length}+</div>
                 <div className="mt-2 text-white/80">Video Tutorials</div>
               </AnimateInView>
               <AnimateInView animation="scale" delay={0.3} className="text-center">
-                <div className="text-4xl font-bold">20+</div>
+                <div className="text-4xl font-bold">{workshops.length}+</div>
                 <div className="mt-2 text-white/80">Workshops</div>
               </AnimateInView>
               <AnimateInView animation="scale" delay={0.4} className="text-center">
@@ -151,7 +152,7 @@ export default function HomePage() {
       <CategoryShowcase />
 
       {/* Testimonials */}
-      <TestimonialSection />
+      {/* <TestimonialSection /> */}
     </div>
   );
 }

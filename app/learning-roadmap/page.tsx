@@ -1,11 +1,13 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-import LearningPathVisualization from '@/components/learning-path/learning-path-visualization';
+import LearningPathVisualization, {
+  Course,
+} from '@/components/learning-path/learning-path-visualization';
 import AnimateInView from '@/components/animations/animate-in-view';
 
 // Sample course data with prerequisites and positions
-const courseData = [
+const courseData: Course[] = [
   // Beginner courses
   {
     id: 'rust-basics',

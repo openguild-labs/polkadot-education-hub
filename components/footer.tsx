@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Github, Twitter, Youtube, Mail } from 'lucide-react';
+import { Github, X, Youtube, Mail } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -38,8 +38,8 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-colors hover:bg-pink-100 hover:text-pink-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-pink-900/30 dark:hover:text-pink-300"
               >
-                <Twitter className="h-5 w-5" />
-                <span className="sr-only">Twitter</span>
+                <X className="h-5 w-5" />
+                <span className="sr-only">X</span>
               </Link>
               <Link
                 href="https://www.youtube.com/@openguildwtf"
@@ -51,7 +51,7 @@ export default function Footer() {
                 <span className="sr-only">YouTube</span>
               </Link>
               <Link
-                href="mailto:contact@polkadotbuilders.edu"
+                href="mailto:admin@openguild.wtf"
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-colors hover:bg-pink-100 hover:text-pink-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-pink-900/30 dark:hover:text-pink-300"
               >
                 <Mail className="h-5 w-5" />
@@ -130,7 +130,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="text-gray-600 transition-colors hover:text-pink-600 dark:text-gray-300 dark:hover:text-pink-400"
                 >
-                  Twitter
+                  X
                 </Link>
               </li>
               <li>

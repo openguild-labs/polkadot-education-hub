@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button';
 import { ChevronDown, ChevronUp, ZoomIn, ZoomOut, RotateCw } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
-interface Course {
+export interface Course {
   id: string;
   title: string;
   description: string;

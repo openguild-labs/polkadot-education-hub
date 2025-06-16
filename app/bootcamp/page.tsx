@@ -1,64 +1,36 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import {
   bootcampPolkadotSdkVideos,
   bootcampSolidityOnPolkaVmVideos,
   extractSection,
 } from '@/constants';
-import { Calendar, Users, Clock, Award, CheckCircle } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
+import { HeroLayout } from '@/components/hero';
 
 export default function BootcampPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-pink-600 to-purple-600 py-24 text-white">
-        <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-        <div className="container relative z-10 mx-auto px-4">
-          <div className="mx-auto max-w-4xl text-center">
-            <Badge className="mb-4 bg-white/20 text-white hover:bg-white/30">
-              Registration Open
-            </Badge>
-            <h1 className="font-heading text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-              Open Polkadot Bootcamp 2025
-            </h1>
-            <p className="mt-6 text-lg leading-8 text-white/80 md:text-xl">
-              An intensive, hands-on learning experience to master Polkadot development. Choose
-              between Polkadot SDK and Solidity on PolkaVM tracks.
-            </p>
-            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Button
-                size="lg"
-                className="w-full rounded-full bg-white px-8 py-6 text-lg font-semibold text-pink-600 shadow-lg transition-all hover:bg-gray-100 hover:shadow-white/20 sm:w-auto"
-              >
-                <Link
-                  href="https://openguild.notion.site/156659b1c817802383e0ddb34ad07a25?pvs=105"
-                  target="_blank"
-                >
-                  Register Now
-                </Link>
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="w-full rounded-full border-white/30 px-8 py-6 text-lg font-semibold text-black transition-all hover:bg-white/10 sm:w-auto dark:text-white"
-              >
-                <Link href="#curriculum">View Curriculum</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      <HeroLayout
+        title={
+          <span>
+            Open <span className="text-pink-600">Polkadot Bootcamp</span>
+          </span>
+        }
+        subtitle="An intensive, hands-on learning experience to master Polkadot development"
+        primaryButton={{ href: '#curriculum', text: 'View Curriculum' }}
+        secondaryButton={{ href: '#register', text: 'Register Now' }}
+      />
       {/* Bootcamp Info */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-4xl">
-            <div className="grid gap-8 md:grid-cols-2">
-              <div className="rounded-2xl bg-white p-6 shadow-lg dark:bg-gray-800">
+            <div className="grid gap-8 md:grid-cols-1">
+              {/** TODO: Enable when bootcamp info is available */}
+              {/* <div className="rounded-2xl bg-white p-6 shadow-lg dark:bg-gray-800">
                 <h2 className="mb-4 font-heading text-2xl font-bold text-gray-900 dark:text-white">
                   Bootcamp Details
                 </h2>
@@ -107,8 +79,7 @@ export default function BootcampPage() {
                     </div>
                   </div>
                 </div>
-              </div>
-
+              </div> */}
               <div className="rounded-2xl bg-white p-6 shadow-lg dark:bg-gray-800">
                 <h2 className="mb-4 font-heading text-2xl font-bold text-gray-900 dark:text-white">
                   What You'll Learn
@@ -151,7 +122,6 @@ export default function BootcampPage() {
                     </p>
                   </div>
                 </div>
-
                 <div className="mt-6">
                   <Button className="w-full rounded-full bg-pink-600 text-white hover:bg-pink-500">
                     <Link
@@ -351,19 +321,22 @@ export default function BootcampPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-r from-pink-600 to-purple-600 py-16 text-white">
-        <div className="container mx-auto px-4">
+      <section
+        className="py-16"
+        style={{ backgroundImage: 'url(/images/backgrounds/gradient-bg-2.png)' }}
+      >
+        <div className="container mx-auto px-4 bg-white rounded-3xl py-16">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="font-heading text-3xl font-bold sm:text-4xl">
               Ready to Start Your Polkadot Journey?
             </h2>
-            <p className="mt-4 text-lg text-white/80">
+            <p className="mt-4 text-lg text-black/80">
               Join our bootcamp and become a proficient Polkadot developer. Limited spots available.
             </p>
             <div className="mt-8">
               <Button
                 size="lg"
-                className="rounded-full bg-white px-8 py-6 text-lg font-semibold text-pink-600 shadow-lg transition-all hover:bg-gray-100 hover:shadow-white/20"
+                className="rounded-full bg-pink-600 px-8 py-6 text-lg font-semibold text-white shadow-lg transition-all hover:bg-gray-100 hover:shadow-white/20"
               >
                 <Link
                   href="https://openguild.notion.site/156659b1c817802383e0ddb34ad07a25?pvs=105"

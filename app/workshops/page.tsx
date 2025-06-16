@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Search, Calendar, ArrowRight } from 'lucide-react';
+import { Calendar, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import ResourceCard from '@/components/resource-card';
 import { workshops } from '@/constants';
+import { HeroLayout } from '@/components/hero';
 
 type OpenGraphData = {
   title?: string;
@@ -29,36 +29,8 @@ const fetchOpenGraph = async (url: string): Promise<OpenGraphData> => {
 };
 
 export default function WorkshopsPage() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [filterType, setFilterType] = useState<'all' | 'technical' | 'community' | 'conceptual'>(
-    'all'
-  );
-  const [ogData, setOgData] = useState<Record<string, OpenGraphData>>({});
-
-  // Fetch OpenGraph data for all workshops
-  useEffect(() => {
-    const fetchAllOpenGraphData = async () => {
-      const data: Record<string, OpenGraphData> = {};
-      for (const workshop of workshops) {
-        if (!workshop.img) {
-          // Only fetch if no image is provided
-          data[workshop.url] = await fetchOpenGraph(workshop.url);
-        }
-      }
-      setOgData(data);
-    };
-    fetchAllOpenGraphData();
-  }, []);
-
-  // Filter workshops based on search query
-  const filteredWorkshops = workshops.filter(
-    workshop =>
-      workshop.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      workshop.description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
   // Group workshops by category
-  const technicalWorkshops = filteredWorkshops.filter(
+  const technicalWorkshops = workshops.filter(
     w =>
       w.title.includes('Technical') ||
       w.title.includes('Substrate') ||
@@ -66,30 +38,21 @@ export default function WorkshopsPage() {
       w.title.includes('ink!')
   );
 
-  const communityWorkshops = filteredWorkshops.filter(
+  const communityWorkshops = workshops.filter(
     w => w.title.includes('Community') || w.title.includes('Call')
   );
 
-  const conceptualWorkshops = filteredWorkshops.filter(
+  const conceptualWorkshops = workshops.filter(
     w => !technicalWorkshops.includes(w) && !communityWorkshops.includes(w)
   );
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <div className="bg-gradient-to-r from-pink-600 to-purple-600 py-16 text-white">
-        <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-3xl text-center">
-            <h1 className="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
-              Polkadot Workshops
-            </h1>
-            <p className="mt-4 text-lg text-white/80">
-              Hands-on workshop materials to help you learn by doing. These workshops cover a wide
-              range of topics from basic Substrate concepts to advanced Polkadot features.
-            </p>
-          </div>
-        </div>
-      </div>
+      <HeroLayout
+        title="Polkadot Workshops"
+        subtitle="Hands-on workshop materials to help you learn by doing. These workshops cover a wide range of topics from basic Substrate concepts to advanced Polkadot features."
+      />
 
       {/* Featured Workshop */}
       <section className="bg-white py-12 dark:bg-gray-950">

@@ -30,7 +30,7 @@ export function HeroLayout({ title, subtitle, primaryButton, secondaryButton }: 
       <div className="mx-auto max-w-7xl px-6 py-12 sm:py-24 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-4xl shadow-lg bg-white/80 px-10 py-14 rounded-3xl flex items-center justify-center flex-col text-center">
           <AnimateInView animation="fadeIn" duration={0.8}>
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+            <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl font-unbounded">
               {title}
             </h1>
           </AnimateInView>
@@ -41,7 +41,7 @@ export function HeroLayout({ title, subtitle, primaryButton, secondaryButton }: 
 
           {(primaryButton || secondaryButton) && (
             <AnimateInView animation="slideUp" delay={0.4} duration={0.8}>
-              <div className="mt-10 flex items-center justify-center gap-x-6">
+              <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
                 {primaryButton && (
                   <Button
                     size="lg"

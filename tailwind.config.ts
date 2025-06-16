@@ -22,6 +22,7 @@ const config = {
       fontFamily: {
         sans: ['Coinbase', 'var(--font-inter)', 'sans-serif'],
         heading: ['Coinbase', 'var(--font-poppins)', 'sans-serif'],
+        unbounded: ['var(--font-unbounded)', 'sans-serif'],
       },
       colors: {
         border: 'hsl(var(--border))',

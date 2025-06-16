@@ -10,7 +10,7 @@ export const ProtocolFeatureCard = ({
   image: string;
 }) => {
   return (
-    <div className="rounded-xl overflow-hidden flex justify-between text-left bg-white p-6 shadow-md transition-all duration-300">
+    <div className="rounded-xl overflow-hidden flex flex-wrap justify-between text-left bg-white p-6 shadow-md transition-all duration-300">
       <div>
         <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-pink-100 text-pink-600 dark:bg-pink-900/30 dark:text-pink-300">
           {icon}
@@ -23,7 +23,7 @@ export const ProtocolFeatureCard = ({
         alt={title}
         width={200}
         height={'100%'}
-        style={{ objectFit: 'contain', marginRight: -80, marginLeft: 50 }}
+        style={{ objectFit: 'contain', marginRight: -80, marginLeft: 50, marginTop: 20 }}
       />
     </div>
   );

@@ -1,6 +1,6 @@
 import type React from 'react';
 import '@/app/globals.css';
-import { Inter, Poppins } from 'next/font/google';
+import { Inter, Poppins, Unbounded } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
@@ -20,6 +20,13 @@ const poppins = Poppins({
   display: 'swap',
 });
 
+const unbounded = Unbounded({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-unbounded',
+  display: 'swap',
+});
+
 export const metadata = {
   title: 'Polkadot Education Hub',
   description: 'A comprehensive education hub for Polkadot blockchain developers',
@@ -28,7 +35,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${poppins.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${poppins.variable} ${unbounded.variable}`}>
       <body className="font-sans">
         <ThemeProvider
           attribute="class"

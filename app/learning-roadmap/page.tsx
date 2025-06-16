@@ -252,13 +252,16 @@ export default function LearningRoadmapPage() {
       </div>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-r from-pink-600 to-purple-600 py-16 text-white">
-        <div className="container mx-auto px-4">
+      <section
+        className="py-16"
+        style={{ backgroundImage: 'url(/images/backgrounds/gradient-bg-2.png)' }}
+      >
+        <div className="container mx-auto px-4 bg-white rounded-3xl py-16">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="font-heading text-3xl font-bold sm:text-4xl">
               Ready to Start Your Learning Journey?
             </h2>
-            <p className="mt-4 text-lg text-white/80">
+            <p className="mt-4 text-lg text-black/80">
               Explore our comprehensive courses and follow the roadmap to become a Polkadot expert.
             </p>
             <div className="mt-8">

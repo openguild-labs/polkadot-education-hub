@@ -15,24 +15,16 @@ import {
   bootcampPolkadotSdkVideos,
   bootcampSolidityOnPolkaVmVideos,
 } from '@/constants';
+import { HeroLayout } from '@/components/hero';
 
 export default function VideosPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <div className="bg-gradient-to-r from-pink-600 to-purple-600 py-16 text-white">
-        <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-3xl text-center">
-            <h1 className="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
-              Technical Videos
-            </h1>
-            <p className="mt-4 text-lg text-white/80">
-              Watch technical videos, coding sessions, and community calls to deepen your
-              understanding of Polkadot development.
-            </p>
-          </div>
-        </div>
-      </div>
+      <HeroLayout
+        title="Technical Videos"
+        subtitle="Watch technical videos, coding sessions, and community calls to deepen your understanding of Polkadot development."
+      />
 
       {/* Search and Filter */}
       <div className="border-b border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950">

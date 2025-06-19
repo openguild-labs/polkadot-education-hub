@@ -111,8 +111,7 @@
   h4,
   h5,
   h6 {
-    @apply font-heading font-bold;
-    font-family: "Coinbase", var(--font-poppins), sans-serif;
+    @apply font-unbounded font-heading font-bold;
   }
 }
 
@@ -139,26 +138,32 @@
 
   .course-card-content {
     @apply p-6;
+    font-family: 'Unbounded', sans-serif;
   }
 
   .course-card-title {
     @apply line-clamp-2 text-xl font-bold text-gray-900 dark:text-white;
+    font-family: 'Unbounded', sans-serif;
   }
 
   .course-card-description {
     @apply mt-2 line-clamp-3 text-gray-600 dark:text-gray-300;
+    font-family: 'Unbounded', sans-serif;
   }
 
   .course-card-footer {
     @apply mt-4 flex items-center justify-between;
+    font-family: 'Unbounded', sans-serif;
   }
 
   .section-title {
     @apply text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl;
+    font-family: 'Unbounded', sans-serif;
   }
 
   .section-description {
     @apply mt-4 max-w-3xl text-lg text-gray-600 dark:text-gray-300;
+    font-family: 'Unbounded', sans-serif;
   }
 
   /* Animations */

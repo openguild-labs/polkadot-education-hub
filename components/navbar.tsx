@@ -92,7 +92,7 @@ export default function Navbar() {
                 alt="Logo"
                 className="h-12 w-12 rounded-full"
               />
-              <span className="font-heading text-xl font-bold text-gray-900 dark:text-white">
+              <span className="font-heading font-unbounded text-md font-bold text-gray-900 dark:text-white">
                 Polkadot Education Hub
               </span>
             </Link>
@@ -136,7 +136,7 @@ export default function Navbar() {
                   ) : (
                     <Link
                       href={item.href}
-                      className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                      className={`rounded-lg px-3 py-2 text-xs font-medium transition-colors font-unbounded ${
                         pathname === item.href
                           ? 'bg-pink-50 text-pink-700 dark:bg-pink-900/20 dark:text-pink-300'
                           : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'
@@ -166,7 +166,7 @@ export default function Navbar() {
                           >
                             <Link
                               href={subitem.href}
-                              className="block rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-pink-50 hover:text-pink-700 dark:text-gray-300 dark:hover:bg-pink-900/20 dark:hover:text-pink-300"
+                              className="block rounded-md px-3 py-2 text-xs font-unbounded font-medium text-gray-700 transition-colors hover:bg-pink-50 hover:text-pink-700 dark:text-gray-300 dark:hover:bg-pink-900/20 dark:hover:text-pink-300"
                               onClick={() => setActiveDropdown(null)}
                             >
                               {subitem.name}
@@ -195,11 +195,12 @@ export default function Navbar() {
                 href="https://github.com/openguild-labs"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="font-unbounded text-xs"
               >
                 GitHub
               </Link>
             </Button>
-            <Button className="hidden hover:scale-105 rounded-full bg-pink-600 hover:bg-pink-500 hover:shadow-md hover:shadow-pink-200 dark:hover:shadow-pink-900/20 md:inline-flex transition-all duration-300">
+            <Button className="hidden font-unbounded text-xs hover:scale-105 rounded-full bg-pink-600 hover:bg-pink-500 hover:shadow-md hover:shadow-pink-200 dark:hover:shadow-pink-900/20 md:inline-flex transition-all duration-300">
               <Link href="/bootcamp">Join Bootcamp</Link>
             </Button>
 

@@ -20,8 +20,8 @@ export default function HomePage() {
           <div className="container mx-auto px-4">
             <div className="mx-auto w-full text-center">
               <AnimateInView animation="slideUp">
-                <h2 className="section-title">Why Learn Polkadot?</h2>
-                <p className="section-description mx-auto">
+                <h2 className="section-title font-unbounded">Why Learn Polkadot?</h2>
+                <p className="section-description text-md mx-auto font-unbounded">
                   Polkadot is a platform that enables innovators and changemakers to build and
                   connect blockchains, creating a more decentralized and interconnected world.
                 </p>
@@ -150,41 +150,41 @@ export default function HomePage() {
                 delay={0.1}
                 className="text-center shadow-lg bg-white p-6 rounded-xl"
               >
-                <div className="text-4xl font-bold flex items-center justify-center">
+                <div className="text-4xl font-bold flex items-center justify-center font-unbounded">
                   <Book className="text-pink-600 mr-2" /> {learningResources.length}+
                 </div>
-                <div className="mt-2 text-black/80">Learning Resources</div>
+                <div className="mt-2 text-black/80 font-unbounded">Learning Resources</div>
               </AnimateInView>
               <AnimateInView
                 animation="scale"
                 delay={0.2}
                 className="text-center shadow-lg bg-white p-6 rounded-xl"
               >
-                <div className="text-4xl font-bold flex items-center justify-center">
+                <div className="text-4xl font-bold flex items-center justify-center font-unbounded">
                   <Video className="text-pink-600 mr-2" /> {courses.length + technicalVideos.length}
                   +
                 </div>
-                <div className="mt-2 text-black/80">Video Tutorials</div>
+                <div className="mt-2 text-black/80 font-unbounded">Video Tutorials</div>
               </AnimateInView>
               <AnimateInView
                 animation="scale"
                 delay={0.3}
                 className="text-center shadow-lg bg-white p-6 rounded-xl"
               >
-                <div className="text-4xl font-bold flex items-center justify-center">
+                <div className="text-4xl font-bold flex items-center justify-center font-unbounded">
                   <Presentation className="text-pink-600 mr-2" /> {workshops.length}+
                 </div>
-                <div className="mt-2 text-black/80">Workshops</div>
+                <div className="mt-2 text-black/80 font-unbounded">Workshops</div>
               </AnimateInView>
               <AnimateInView
                 animation="scale"
                 delay={0.4}
                 className="text-center shadow-lg bg-white p-6 rounded-xl"
               >
-                <div className="text-4xl font-bold flex items-center justify-center">
+                <div className="text-4xl font-bold flex items-center justify-center font-unbounded">
                   <User className="text-pink-600 mr-2" /> 1,000+
                 </div>
-                <div className="mt-2 text-black/80">Students Registered</div>
+                <div className="mt-2 text-black/80 font-unbounded">Students Registered</div>
               </AnimateInView>
             </div>
           </div>

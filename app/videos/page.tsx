@@ -50,7 +50,7 @@ export default function VideosPage() {
                 <Badge className="mb-4 bg-pink-500 text-white hover:bg-pink-600">
                   Featured Video
                 </Badge>
-                <h2 className="mb-4 font-heading text-2xl font-bold text-white md:text-3xl">
+                <h2 className="mb-4 font-unbounded font-heading text-2xl font-bold text-white md:text-3xl">
                   Open Polkadot Bootcamp 2025 - Introduction
                 </h2>
                 <p className="mb-6 text-gray-300">
@@ -89,7 +89,7 @@ export default function VideosPage() {
         <div className="container mx-auto px-4">
           <Tabs defaultValue="bootcamp" className="mx-auto">
             <div className="mb-8 flex flex-col items-center justify-between gap-4 sm:flex-row">
-              <h2 className="font-heading text-2xl font-bold text-gray-900 dark:text-white">
+              <h2 className="font-unbounded font-heading text-2xl font-bold text-gray-900 dark:text-white">
                 Video Library
               </h2>
               <TabsList>

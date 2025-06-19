@@ -10,10 +10,10 @@ export default function BootcampPromo() {
       <div className="container mx-auto px-4">
         <div className="grid items-center gap-12 md:grid-cols-2">
           <AnimateInView animation="slideRight">
-            <h2 className="font-heading text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-              Open Polkadot Bootcamp 2025
+            <h2 className="font-unbounded font-heading text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+              Open Polkadot Bootcamp
             </h2>
-            <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
+            <p className="text-md font-unbounded mt-4 text-lg text-gray-600 dark:text-gray-300">
               Join our comprehensive bootcamp and learn to build on Polkadot from industry experts.
               Master Substrate, Polkadot SDK, and Solidity on PolkaVM through hands-on projects and
               expert guidance.
@@ -26,7 +26,7 @@ export default function BootcampPromo() {
                     <Calendar className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="font-medium text-gray-900 dark:text-white">
+                    <h3 className="font-medium font-unbounded text-gray-900 dark:text-white">
                       Next Cohort Starting Soon
                     </h3>
                     <p className="text-gray-600 dark:text-gray-300">
@@ -42,7 +42,7 @@ export default function BootcampPromo() {
                     <Users className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="font-medium text-gray-900 dark:text-white">
+                    <h3 className="font-medium font-unbounded text-gray-900 dark:text-white">
                       Two Specialized Tracks
                     </h3>
                     <p className="text-gray-600 dark:text-gray-300">
@@ -58,7 +58,7 @@ export default function BootcampPromo() {
                     <BookOpen className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="font-medium text-gray-900 dark:text-white">
+                    <h3 className="font-medium font-unbounded text-gray-900 dark:text-white">
                       Comprehensive Curriculum
                     </h3>
                     <p className="text-gray-600 dark:text-gray-300">
@@ -70,12 +70,12 @@ export default function BootcampPromo() {
             </div>
 
             <AnimateInView animation="fadeIn" delay={0.4} className="mt-8">
-              <Button className="rounded-full hover:scale-105 hover:bg-pink-500 hover:shadow-pink-200 dark:hover:shadow-pink-900/20 bg-pink-600 px-8 py-6 text-lg font-semibold text-white shadow-lg transition-all hover:bg-pink-500 hover:shadow-pink-200 dark:hover:shadow-pink-900/20">
+              <Button className="rounded-full font-unbounded hover:scale-105 hover:bg-pink-500 hover:shadow-pink-200 dark:hover:shadow-pink-900/20 bg-pink-600 px-8 py-6 text-lg font-semibold text-white shadow-lg transition-all hover:bg-pink-500 hover:shadow-pink-200 dark:hover:shadow-pink-900/20">
                 <Link href="/bootcamp">Register Now</Link>
               </Button>
               <Link
                 href="/bootcamp#curriculum"
-                className="ml-4 inline-flex items-center text-pink-600 transition-all duration-300 hover:text-pink-700 dark:text-pink-400 dark:hover:text-pink-300 group"
+                className="ml-4 inline-flex font-unbounded items-center text-pink-600 transition-all duration-300 hover:text-pink-700 dark:text-pink-400 dark:hover:text-pink-300 group"
               >
                 View Curriculum{' '}
                 <ArrowRight className="ml-1 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -98,12 +98,12 @@ export default function BootcampPromo() {
                   <div className="rounded-full bg-white/90 px-4 py-2 backdrop-blur-sm">
                     <div className="flex items-center space-x-2">
                       <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
-                      <span className="text-sm font-medium text-gray-900">
+                      <span className="text-sm font-medium font-unbounded text-gray-900">
                         Live Sessions Available
                       </span>
                     </div>
                   </div>
-                  <div className="rounded-full bg-pink-600/90 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
+                  <div className="rounded-full bg-pink-600/90 px-4 py-2 text-sm font-unbounded font-medium text-white backdrop-blur-sm">
                     30+ Video Lessons
                   </div>
                 </div>
@@ -112,10 +112,10 @@ export default function BootcampPromo() {
             <AnimateInView animation="scale" delay={0.4} className="absolute -bottom-6 -left-6">
               <div className="rounded-xl bg-white p-4 shadow-lg transition-transform duration-300 hover:scale-105 dark:bg-gray-800">
                 <div className="flex items-center space-x-2">
-                  <div className="rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-800 dark:bg-green-900/30 dark:text-green-300">
+                  <div className="rounded-full bg-green-100 px-3 py-1 text-sm font-medium font-unbounded text-green-800 dark:bg-green-900/30 dark:text-green-300">
                     Now Open
                   </div>
-                  <div className="text-sm font-medium text-gray-600 dark:text-gray-300">
+                  <div className="text-sm font-medium font-unbounded text-gray-600 dark:text-gray-300">
                     Limited Spots Available
                   </div>
                 </div>

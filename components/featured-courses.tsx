@@ -27,8 +27,8 @@ export default function FeaturedCourses() {
     <section className="bg-white py-24 dark:bg-gray-950">
       <div className="container mx-auto px-4">
         <AnimateInView animation="slideUp" className="mb-12 text-center">
-          <h2 className="section-title">Featured Courses</h2>
-          <p className="section-description mx-auto">
+          <h2 className="section-title font-unbounded">Featured Courses</h2>
+          <p className="section-description mx-auto font-unbounded">
             Start your journey with our most popular Polkadot development courses
           </p>
         </AnimateInView>

@@ -2,6 +2,7 @@ import type React from 'react';
 import '@/app/globals.css';
 import { Inter, Poppins, Unbounded } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
+import { AuthProvider } from '@/contexts/AuthContext';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 import PageTransition from '@/components/page-transition';
@@ -43,12 +44,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           enableSystem
           disableTransitionOnChange
         >
-          <ProgressIndicator />
-          <Navbar />
-          <PageTransition>
-            <main>{children}</main>
-          </PageTransition>
-          <Footer />
+          <AuthProvider>
+            <ProgressIndicator />
+            <Navbar />
+            <PageTransition>
+              <main>{children}</main>
+            </PageTransition>
+            <Footer />
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

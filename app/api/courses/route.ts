@@ -1,19 +1,15 @@
 import { NextResponse } from 'next/server';
-import { communityCallVideos, generalVideos, technicalVideos } from '@/constants';
+import { courses as allCourses } from '@/constants';
 
 export async function GET() {
   try {
     return NextResponse.json({
       success: true,
-      data: {
-        communityCallVideos,
-        generalVideos,
-        technicalVideos,
-      },
-      count: communityCallVideos.length + generalVideos.length + technicalVideos.length,
+      data: allCourses,
+      count: allCourses.length,
     });
   } catch (error) {
-    console.error('Error fetching videos:', error);
+    console.error('Error fetching courses:', error);
     return NextResponse.json(
       {
         success: false,

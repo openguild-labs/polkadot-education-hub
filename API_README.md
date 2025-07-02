@@ -19,12 +19,38 @@ To ensure fair usage, the API is rate limited. Please implement appropriate cach
 
 ## Endpoints
 
-### 1. Get All Videos
+### 1. Get All Courses
+
+Retrieves all available courses.
+
+```http
+GET /api/courses
+```
+
+#### Response
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "title": "Course Title",
+      "description": "Course description...",
+      "url": "https://...",
+      "img": "/path/to/image.png",
+      "released": true
+    }
+  ],
+  "count": 1
+}
+```
+
+### 2. Get All Videos
 
 Retrieves all available videos categorized by type.
 
 ```http
-GET /api/courses
+GET /api/videos
 ```
 
 #### Response
@@ -41,7 +67,7 @@ GET /api/courses
 }
 ```
 
-### 2. Get All Workshops
+### 3. Get All Workshops
 
 Retrieves all available workshops.
 
@@ -62,13 +88,12 @@ GET /api/workshops
       "img": "/path/to/image.png",
       "released": true
     }
-    // ... more workshops
   ],
-  "count": 15
+  "count": 1
 }
 ```
 
-### 3. Get Research Articles
+### 4. Get Research Articles
 
 Retrieves all available research articles.
 
@@ -87,9 +112,8 @@ GET /api/educations
       "description": "Article description...",
       "url": "https://..."
     }
-    // ... more articles
   ],
-  "count": 8
+  "count": 1
 }
 ```
 
@@ -114,30 +138,30 @@ All endpoints return a consistent error format:
 
 ## Examples
 
-### Fetching all videos using JavaScript (Browser)
+### Fetching all courses using JavaScript (Browser)
 
 ```javascript
-async function fetchVideos() {
+async function fetchCourses() {
   try {
     const response = await fetch('https://learn.openguild.wtf/api/courses');
     const data = await response.json();
     
     if (data.success) {
-      console.log('Total videos:', data.count);
-      console.log('Technical videos:', data.data.technicalVideos);
+      console.log('Total courses:', data.count);
+      console.log('Courses:', data.data);
     } else {
       console.error('Error:', data.error);
     }
   } catch (error) {
-    console.error('Failed to fetch videos:', error);
+    console.error('Failed to fetch courses:', error);
   }
 }
 ```
 
-### Fetching workshops using cURL
+### Fetching videos using cURL
 
 ```bash
-curl https://learn.openguild.wtf/api/workshops
+curl https://learn.openguild.wtf/api/videos
 ```
 
 ## Versioning

@@ -23,6 +23,7 @@ export default function Navbar() {
     { name: 'Workshops', href: '/workshops' },
     { name: 'Videos', href: '/videos' },
     { name: 'Learning Path', href: '/learning-path' },
+    { name: 'PolkaVM', href: '/polkavm' },
   ];
 
   useEffect(() => {

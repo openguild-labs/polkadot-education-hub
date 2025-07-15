@@ -17,6 +17,25 @@ Currently, all endpoints are publicly accessible and do not require authenticati
 
 To ensure fair usage, the API is rate limited. Please implement appropriate caching on your end if you need to make frequent requests.
 
+## Learning Resource Structure
+
+Learning resources in the Polkadot Education Hub share a common data structure:
+
+```json
+{
+  "Course Name": "Resource Title",
+  "Status": "NOT_STARTED | IN_PROGRESS | COMPLETED",
+  "Third-party source": "Yes | No",
+  "Link": "https://resource-url.com",
+  "Category": "tutorial | documentation | repository | article | community | case-study | proposal",
+  "Level": "BEGINNER | INTERMEDIATE | ADVANCED",
+  "Language": "English",
+  "Source": "Source Organization",
+  "Bundle Name": "Bundle Category",
+  "Description": "Detailed description of the learning resource"
+}
+```
+
 ## Endpoints
 
 ### 1. Get All Courses

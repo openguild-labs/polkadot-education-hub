@@ -573,9 +573,15 @@ export enum LearningResourceLevel {
   ADVANCED = 'Advanced',
 }
 
+export enum LearningResourceStatus {
+  NOT_STARTED = 'Not started',
+  IN_PROGRESS = 'In progress',
+  DONE = 'Done',
+}
+
 export type LearningResource = {
   'Course Name': string;
-  Status: string;
+  Status: LearningResourceStatus;
   'Third-party source': string;
   Link: string;
   Category: string;
@@ -583,12 +589,367 @@ export type LearningResource = {
   Language: string;
   Source: string;
   'Bundle Name': string;
+  Description?: string; // Optional for backward compatibility
 };
+
+export const polkaVMResources: LearningResource[] = [
+  {
+    'Course Name': 'Polkadot Hub Developers Facebook Group',
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'Yes',
+    Link: 'https://www.facebook.com/groups/1202788154012237/',
+    Category: 'community',
+    Level: LearningResourceLevel.BEGINNER,
+    Language: 'English',
+    Source: 'Facebook',
+    'Bundle Name': 'PolkaVM Bundle',
+    Description:
+      'Connect with Polkadot Hub developers and enthusiasts in this Facebook group. Share insights, ask questions, and collaborate on PolkaVM projects with the community.',
+  },
+  {
+    'Course Name': 'Uniswap V2 Successfully Launches on PolkaVM',
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'Yes',
+    Link: 'https://medium.com/@OneBlockplus/uniswap-v2-successfully-launches-on-polkavm-a-milestone-for-polkadot-hub-98a1d76f5f1c',
+    Category: 'case-study',
+    Level: LearningResourceLevel.INTERMEDIATE,
+    Language: 'English',
+    Source: 'OneBlockplus',
+    'Bundle Name': 'PolkaVM Bundle',
+    Description:
+      "A detailed case study exploring how Uniswap V2 was successfully deployed on PolkaVM, marking a significant milestone for Polkadot Hub and demonstrating the platform's capability for complex DeFi applications.",
+  },
+  {
+    'Course Name': 'Solidity Development on Polkadot Course Wrap-up',
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'Yes',
+    Link: 'https://medium.com/@OneBlockplus/solidity-development-on-polkadot-course-wraps-up-successfully-9347f9631d96',
+    Category: 'tutorial',
+    Level: LearningResourceLevel.INTERMEDIATE,
+    Language: 'English',
+    Source: 'OneBlockplus',
+    'Bundle Name': 'PolkaVM Bundle',
+    Description:
+      'A comprehensive summary of the Solidity development course on Polkadot, covering key learnings, challenges, and successes. Ideal for developers looking to understand the transition from Ethereum to Polkadot development.',
+  },
+  {
+    'Course Name': 'In-depth Analysis of Revive and Precompile',
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'Yes',
+    Link: 'https://medium.com/@OneBlockplus/in-depth-analysis-of-revive-and-precompile-bf199a86db15',
+    Category: 'documentation',
+    Level: LearningResourceLevel.ADVANCED,
+    Language: 'English',
+    Source: 'OneBlockplus',
+    'Bundle Name': 'PolkaVM Bundle',
+    Description:
+      'An advanced technical exploration of Revive and Precompile in the PolkaVM ecosystem. This analysis delves into implementation details, performance considerations, and security aspects for experienced developers.',
+  },
+  {
+    'Course Name': 'Developing ERC20 Contracts on PolkaVM with Rust',
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'Yes',
+    Link: 'https://medium.com/@OneBlockplus/developing-erc20-contracts-on-polkavm-with-rust-full-workflow-explained-937c1912bdda',
+    Category: 'tutorial',
+    Level: LearningResourceLevel.INTERMEDIATE,
+    Language: 'English',
+    Source: 'OneBlockplus',
+    'Bundle Name': 'PolkaVM Bundle',
+    Description:
+      'A step-by-step tutorial explaining the complete workflow for developing ERC20 token contracts on PolkaVM using Rust. Includes code examples, deployment steps, and best practices for token implementation.',
+  },
+  {
+    'Course Name': 'PolkaVM Move Compiler',
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'Yes',
+    Link: 'https://github.com/eigerco/polkavm-move',
+    Category: 'repository',
+    Level: LearningResourceLevel.ADVANCED,
+    Language: 'English',
+    Source: 'Eiger',
+    'Bundle Name': 'PolkaVM Bundle',
+    Description:
+      'A GitHub repository containing the PolkaVM Move language compiler. This project enables developers to write smart contracts in the Move language and deploy them to PolkaVM, combining the safety features of Move with the performance of PolkaVM.',
+  },
+  {
+    'Course Name': 'Why PolkaVM Is a Golden Opportunity for Small Teams in Web3',
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'Yes',
+    Link: 'https://medium.com/@OneBlockplus/why-polkavm-is-a-golden-opportunity-for-small-teams-in-web3-8c5736f29bae',
+    Category: 'article',
+    Level: LearningResourceLevel.BEGINNER,
+    Language: 'English',
+    Source: 'OneBlockplus',
+    'Bundle Name': 'PolkaVM Bundle',
+    Description:
+      'This article explains why PolkaVM presents an excellent opportunity for smaller development teams entering the Web3 space. It covers the reduced barriers to entry, cost-effectiveness, and the technical advantages of choosing PolkaVM for blockchain projects.',
+  },
+  {
+    'Course Name': 'Smart Contracts | Polkadot Developer Docs',
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'No',
+    Link: 'https://docs.polkadot.com/develop/smart-contracts/',
+    Category: 'documentation',
+    Level: LearningResourceLevel.BEGINNER,
+    Language: 'English',
+    Source: 'Polkadot Docs',
+    'Bundle Name': 'PolkaVM Bundle',
+    Description:
+      'Official Polkadot documentation covering smart contract development. This comprehensive guide explains the fundamentals of smart contract programming on Polkadot, with specific sections on PolkaVM integration and capabilities.',
+  },
+  {
+    'Course Name': 'PolkaVM: A Fast and Secure RISC-V Based Virtual Machine',
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'No',
+    Link: 'https://github.com/paritytech/polkavm',
+    Category: 'repository',
+    Level: LearningResourceLevel.ADVANCED,
+    Language: 'English',
+    Source: 'Parity Technologies',
+    'Bundle Name': 'PolkaVM Bundle',
+    Description:
+      'The official GitHub repository for PolkaVM by Parity Technologies. Contains the source code, documentation, and examples for the RISC-V based virtual machine designed for smart contract execution in the Polkadot ecosystem.',
+  },
+  {
+    'Course Name': 'Smart Contracts Overview | Polkadot Developer Docs',
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'No',
+    Link: 'https://docs.polkadot.com/develop/smart-contracts/overview/',
+    Category: 'documentation',
+    Level: LearningResourceLevel.BEGINNER,
+    Language: 'English',
+    Source: 'Polkadot Docs',
+    'Bundle Name': 'PolkaVM Bundle',
+    Description:
+      'An introductory overview of smart contracts in the Polkadot ecosystem from the official documentation. This resource covers basic concepts, the role of PolkaVM, and how smart contracts fit into the broader Polkadot architecture.',
+  },
+  {
+    'Course Name': 'Introduction to PolkaVM - Open Polkadot Bootcamp',
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'No',
+    Link: 'https://bootcamp.openguild.wtf/smart-contract-development/introduction/introduction-to-polkavm',
+    Category: 'tutorial',
+    Level: LearningResourceLevel.BEGINNER,
+    Language: 'English',
+    Source: 'OpenGuild',
+    'Bundle Name': 'PolkaVM Bundle',
+    Description:
+      'A beginner-friendly introduction to PolkaVM from the Open Polkadot Bootcamp. This tutorial explains the core concepts, architecture, and use cases of PolkaVM in an accessible format with practical examples.',
+  },
+  {
+    'Course Name': 'Project Proposal - PolkaVM Solidity IDE',
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'Yes',
+    Link: 'https://hackmd.io/9tBhtVuVSiWasEAbdj3QPA',
+    Category: 'proposal',
+    Level: LearningResourceLevel.INTERMEDIATE,
+    Language: 'English',
+    Source: 'Community Proposal',
+    'Bundle Name': 'PolkaVM Bundle',
+    Description:
+      'A detailed community proposal for developing a specialized Solidity IDE for PolkaVM. This document outlines the project goals, technical specifications, and implementation plan for creating a dedicated development environment.',
+  },
+  {
+    'Course Name': 'Introduction of Using PolkaVM',
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'Yes',
+    Link: 'https://realtakahashi-work.medium.com/introduction-of-using-polkavm-8eeece159681',
+    Category: 'tutorial',
+    Level: LearningResourceLevel.BEGINNER,
+    Language: 'English',
+    Source: 'Medium',
+    'Bundle Name': 'PolkaVM Bundle',
+    Description:
+      'A practical introductory guide for developers new to PolkaVM. This tutorial walks through the basics of setting up a development environment, creating a simple smart contract, and deploying it to the PolkaVM runtime.',
+  },
+  {
+    'Course Name': 'Announcing PolkaVM - Polkadot Forum Discussion',
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'Yes',
+    Link: 'https://forum.polkadot.network/t/announcing-polkavm-a-new-risc-v-based-vm-for-smart-contracts-and-possibly-more/3811',
+    Category: 'community',
+    Level: LearningResourceLevel.BEGINNER,
+    Language: 'English',
+    Source: 'Polkadot Forum',
+    'Bundle Name': 'PolkaVM Bundle',
+    Description:
+      'The original announcement thread for PolkaVM on the Polkadot Forum. Contains valuable insights from the creators, community reactions, and discussions about the initial design and implementation goals of the virtual machine.',
+  },
+  {
+    'Course Name': 'Announcing PolkaVM - Page 2',
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'Yes',
+    Link: 'https://forum.polkadot.network/t/announcing-polkavm-a-new-risc-v-based-vm-for-smart-contracts-and-possibly-more/3811?page=2',
+    Category: 'community',
+    Level: LearningResourceLevel.BEGINNER,
+    Language: 'English',
+    Source: 'Polkadot Forum',
+    'Bundle Name': 'PolkaVM Bundle',
+    Description:
+      'Continuation of the PolkaVM announcement discussion with more advanced technical questions and answers from developers. This thread includes community feedback and detailed explanations about implementation choices.',
+  },
+  {
+    'Course Name': 'Introduction of PolkaVM(3) with Hardhat',
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'Yes',
+    Link: 'https://coinsbench.com/introduction-of-polkavm-3-with-hardhat-116f68fa4140',
+    Category: 'tutorial',
+    Level: LearningResourceLevel.INTERMEDIATE,
+    Language: 'English',
+    Source: 'CoinsBench',
+    'Bundle Name': 'PolkaVM Bundle',
+    Description:
+      'Part 3 of a series on using PolkaVM, focusing on Hardhat integration. This tutorial demonstrates how to use the popular Ethereum development environment with PolkaVM for a more familiar development workflow.',
+  },
+  {
+    'Course Name': 'PolkaVM Design | Polkadot Developer Docs',
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'No',
+    Link: 'https://docs.polkadot.com/polkadot-protocol/smart-contract-basics/polkavm-design',
+    Category: 'documentation',
+    Level: LearningResourceLevel.ADVANCED,
+    Language: 'English',
+    Source: 'Polkadot Docs',
+    'Bundle Name': 'PolkaVM Bundle',
+    Description:
+      'Technical documentation detailing the architecture and design principles of PolkaVM. Covers the RISC-V instruction set implementation, memory model, security considerations, and performance optimizations.',
+  },
+  {
+    'Course Name': 'Developing ERC20 Contracts on PolkaVM with Rust',
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'Yes',
+    Link: 'https://medium.com/@OneBlockplus/developing-erc20-contracts-on-polkavm-with-rust-full-workflow-explained-937c1912bdda',
+    Category: 'tutorial',
+    Level: LearningResourceLevel.INTERMEDIATE,
+    Language: 'English',
+    Source: 'OneBlock+',
+    'Bundle Name': 'PolkaVM Bundle',
+    Description:
+      'A comprehensive tutorial on building ERC20 token contracts on PolkaVM using Rust. Includes complete workflow from setup to deployment, with code examples and best practices for token implementation.',
+  },
+  {
+    'Course Name': 'PolkaVM Repository on GitHub',
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'No',
+    Link: 'https://github.com/paritytech/polkavm',
+    Category: 'repository',
+    Level: LearningResourceLevel.ADVANCED,
+    Language: 'English',
+    Source: 'Parity Technologies',
+    'Bundle Name': 'PolkaVM Bundle',
+    Description:
+      'The official GitHub repository for PolkaVM maintained by Parity Technologies. Contains the source code, development tools, examples, and documentation for implementing and extending the PolkaVM runtime.',
+  },
+  {
+    'Course Name': 'PolkaVM Intro Tutorial - Realtakahashi Work',
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'Yes',
+    Link: 'https://realtakahashi-work.medium.com/introduction-of-using-polkavm-8eeece159681',
+    Category: 'tutorial',
+    Level: LearningResourceLevel.BEGINNER,
+    Language: 'English',
+    Source: 'Medium',
+    'Bundle Name': 'PolkaVM Bundle',
+    Description:
+      'A beginner-friendly introduction to PolkaVM with practical examples. This tutorial provides a gentle onboarding experience for developers new to the Polkadot ecosystem who want to start building with PolkaVM.',
+  },
+  {
+    'Course Name': 'Resolc Solidity Compiler for PolkaVM',
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'No',
+    Link: 'https://github.com/paritytech/revive',
+    Category: 'repository',
+    Level: LearningResourceLevel.ADVANCED,
+    Language: 'English',
+    Source: 'Parity Technologies',
+    'Bundle Name': 'Revive Bundle',
+    Description:
+      'The official repository for Resolc, a Solidity compiler targeting PolkaVM. This tool enables Ethereum developers to compile their existing Solidity smart contracts for deployment on PolkaVM without significant code changes.',
+  },
+  {
+    'Course Name': 'How to set up pallet revive in Substrate parachain',
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'No',
+    Link: 'https://openguild.wtf/blog/polkadot/polkadot-how-to-set-up-pallet-revive-in-substrate-parachain-template',
+    Category: 'tutorial',
+    Level: LearningResourceLevel.INTERMEDIATE,
+    Language: 'English',
+    Source: 'OpenGuild',
+    'Bundle Name': 'Revive Bundle',
+    Description:
+      'A step-by-step guide to integrating the Revive pallet into a Substrate parachain. This tutorial walks through the entire process of setting up PolkaVM compatibility in your parachain for Ethereum-compatible smart contracts.',
+  },
+  {
+    'Course Name': 'Precompiles in Revive Pallet',
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'No',
+    Link: 'https://docs.polkadot.com/develop/smart-contracts/precompiles/',
+    Category: 'documentation',
+    Level: LearningResourceLevel.INTERMEDIATE,
+    Language: 'English',
+    Source: 'Polkadot Docs',
+    'Bundle Name': 'Revive Bundle',
+    Description:
+      'Official documentation explaining precompiles in the Revive pallet. This resource covers how precompiled contracts work in the PolkaVM environment, their performance benefits, and how to use them in your smart contract applications.',
+  },
+  {
+    'Course Name': "Can pallet revive Help Improve Polkadot's UX?",
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'Yes',
+    Link: 'https://forum.polkadot.network/t/can-pallet-revive-help-improve-polkadots-ux/12923',
+    Category: 'community',
+    Level: LearningResourceLevel.INTERMEDIATE,
+    Language: 'English',
+    Source: 'Polkadot Forum',
+    'Bundle Name': 'Revive Bundle',
+    Description:
+      'A community discussion on the Polkadot Forum about how the Revive pallet and PolkaVM integration can potentially improve the user experience in the Polkadot ecosystem. Features diverse perspectives from community members and developers.',
+  },
+  {
+    'Course Name': 'Revive Pallet API Docs',
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'No',
+    Link: 'https://paritytech.github.io/polkadot-sdk/master/pallet_revive/index.html',
+    Category: 'documentation',
+    Level: LearningResourceLevel.ADVANCED,
+    Language: 'English',
+    Source: 'Parity SDK',
+    'Bundle Name': 'Revive Bundle',
+    Description:
+      'Complete API documentation for the Revive pallet, part of the Polkadot SDK. This technical reference provides detailed information on all available functions, data structures, and interfaces for developers implementing Revive in their applications.',
+  },
+  {
+    'Course Name': 'Deploy an ERC-20 to Polkadot Hub',
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'No',
+    Link: 'https://docs.polkadot.com/tutorials/smart-contracts/deploy-erc20/',
+    Category: 'tutorial',
+    Level: LearningResourceLevel.INTERMEDIATE,
+    Language: 'English',
+    Source: 'Polkadot Docs',
+    'Bundle Name': 'Polkadot Hub Bundle',
+    Description:
+      'A comprehensive tutorial that walks through the process of deploying an ERC-20 token to Polkadot Hub. Includes contract development, testing, and deployment steps with detailed explanations.',
+  },
+  {
+    'Course Name': 'Deploy an NFT to Polkadot Hub',
+    Status: LearningResourceStatus.DONE,
+    'Third-party source': 'No',
+    Link: 'https://docs.polkadot.com/tutorials/smart-contracts/deploy-nft/',
+    Category: 'tutorial',
+    Level: LearningResourceLevel.INTERMEDIATE,
+    Language: 'English',
+    Source: 'Polkadot Docs',
+    'Bundle Name': 'Polkadot Hub Bundle',
+    Description:
+      'Step-by-step instructions for creating and deploying an NFT collection on Polkadot Hub. This tutorial covers the ERC-721 standard implementation, metadata handling, and minting process for non-fungible tokens.',
+  },
+];
 
 export const learningResources: LearningResource[] = [
   {
     'Course Name': 'Open Rust Bootcamp',
-    Status: 'Not started',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'No',
     Link: 'https://github.com/openguild-labs/open-rust',
     Category: 'Course',
@@ -599,7 +960,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'ink! Official Documentation',
-    Status: 'In progress',
+    Status: LearningResourceStatus.IN_PROGRESS,
     'Third-party source': 'Yes',
     Link: 'https://use.ink/',
     Category: 'Documentation',
@@ -610,7 +971,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Polkadot Blockchain Academy Book',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'Yes',
     Link: 'https://polkadot-blockchain-academy.github.io/pba-book/',
     Category: 'Educational Program',
@@ -621,7 +982,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Polkadot Blockchain Academy Slides',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'Yes',
     Link: 'https://polkadot-blockchain-academy.github.io/pba-content/',
     Category: 'Educational Program',
@@ -632,7 +993,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Dotcodeschool - Rust State Machine: Basic Concepts for Blockchain Development',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'Yes',
     Link: 'https://dotcodeschool.com/courses/rust-state-machine',
     Category: 'Course',
@@ -643,7 +1004,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Dotcodeschool - Build your own DEX',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'Yes',
     Link: 'https://dotcodeschool.com/courses/build-your-own-dex',
     Category: 'Course',
@@ -654,7 +1015,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Dotcodeschool - Substrate Kitties: Build Your Own NFT Marketplace',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'Yes',
     Link: 'https://dotcodeschool.com/courses/substrate-kitties',
     Category: 'Course',
@@ -665,7 +1026,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Polkadot SDK là gì?',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'No',
     Link: 'https://openguild.wtf/blog/polkadot/polkadot-sdk-la-gi',
     Category: 'Technical Blog',
@@ -676,7 +1037,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Polkadot Guide: Chạy Substrate Node trên máy tính của bạn',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'No',
     Link: 'https://openguild.wtf/blog/polkadot/polkadot-guide-chay-local-substrate-node',
     Category: 'Technical Blog',
@@ -687,7 +1048,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Polkadot Guide: Giả lập mạng Substrate',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'No',
     Link: 'https://openguild.wtf/blog/polkadot/polkadot-guide-gia-lap-mang-substrate',
     Category: 'Technical Blog',
@@ -698,7 +1059,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Polkadot Guide: Pallet là gì?',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'No',
     Link: 'https://openguild.wtf/blog/polkadot/polkadot-guide-pallet-la-gi',
     Category: 'Technical Blog',
@@ -709,7 +1070,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Code Breakdown - FRAME Pallet',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'No',
     Link: 'https://openguild.wtf/blog/polkadot/code-breakdown-pallet-template',
     Category: 'Technical Blog',
@@ -720,7 +1081,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'VBI Academy x OpenGuild - Polkadot Bootcamp',
-    Status: 'In progress',
+    Status: LearningResourceStatus.IN_PROGRESS,
     'Third-party source': 'Yes',
     Link: 'https://openedu101.com/en/bootcamps/polkadot-bootcamp',
     Category: 'Educational Program',
@@ -731,7 +1092,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Polkadot Study - Interactive Substrate Tutorial',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'Yes',
     Link: 'https://polkadot.study/tutorials/interactive-substrate-tutorials-rusty-crewmates/',
     Category: 'Course',
@@ -742,7 +1103,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Polkadot ink! Smart Contract Tutorial',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'No',
     Link: 'https://openguild.wtf/blog/polkadot/polkadot-ink-smart-contract-tutorial',
     Category: 'Technical Blog',
@@ -753,7 +1114,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Basic Wallet with Polkadot.js API and React with TypeScript.',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'Yes',
     Link: 'https://polkadot.study/tutorials/wallet-with-polkadot-js-and-react-with-typescript/intro',
     Category: 'Course',
@@ -764,7 +1125,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Polkadot Development Roadmap',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'No',
     Link: 'https://roadmap.sh/r/polkadot-development-roadmap',
     Category: 'Aggregated Resource',
@@ -775,51 +1136,59 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Polkadot Knowledge Map',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'No',
     Link: 'https://github.com/openguild-labs/polkadot-knowledge-map',
-    Category: 'Aggregated Resource',
+    Category: 'documentation',
     Level: LearningResourceLevel.BEGINNER,
     Language: 'English',
     Source: 'OpenGuild',
     'Bundle Name': 'Substrate Course Bundle',
+    Description:
+      'A comprehensive knowledge map for Polkadot ecosystem concepts, organized by topic areas. This resource helps developers understand the relationships between different components of the Polkadot technology stack.',
   },
   {
     'Course Name': 'Open Hack Pallet Starter',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'No',
     Link: 'https://github.com/openguild-labs/open-hack-pallet-starter',
-    Category: 'Open Hack Module',
+    Category: 'repository',
     Level: LearningResourceLevel.BEGINNER,
     Language: 'Vietnamese',
     Source: 'OpenGuild',
     'Bundle Name': 'Substrate Course Bundle',
+    Description:
+      'A starter template for building custom pallets in Substrate with Vietnamese documentation. This repository provides a foundation for developers looking to create blockchain runtime modules.',
   },
   {
     'Course Name': 'Open Hack Rust Starter',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'No',
     Link: 'https://github.com/openguild-labs/open-hack-rust-starter',
-    Category: 'Open Hack Module',
+    Category: 'repository',
     Level: LearningResourceLevel.BEGINNER,
     Language: 'English',
     Source: 'OpenGuild',
     'Bundle Name': 'Rust Course Bundle',
+    Description:
+      'A beginner-friendly Rust starter template for blockchain development. This repository contains boilerplate code, examples, and documentation to help new developers get started with Rust programming for Polkadot.',
   },
   {
     'Course Name': 'Open Hack Substrate Starter',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'No',
     Link: 'https://github.com/openguild-labs/open-hack-substrate-starter',
-    Category: 'Open Hack Module',
+    Category: 'repository',
     Level: LearningResourceLevel.BEGINNER,
     Language: 'English',
     Source: 'OpenGuild',
     'Bundle Name': 'Substrate Course Bundle',
+    Description:
+      'A template repository for Substrate blockchain development. This starter kit includes basic node setup, custom runtime configuration, and examples to accelerate the development of Substrate-based blockchains.',
   },
   {
     'Course Name': 'Open Hack Dedot',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'No',
     Link: 'https://github.com/openguild-labs/open-hack-dedot',
     Category: 'Open Hack Module',
@@ -830,7 +1199,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Open Hack ink! Starter',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'No',
     Link: 'https://github.com/openguild-labs/open-hack-ink-starter',
     Category: 'Open Hack Module',
@@ -841,7 +1210,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Substrate Graph Benchmarks',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'Yes',
     Link: 'https://www.shawntabrizi.com/substrate-graph-benchmarks/docs/#/',
     Category: 'Documentation',
@@ -852,7 +1221,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Substrate Runtime Storage Migrations',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'Yes',
     Link: 'https://www.blog.nodrama.io/substrate-runtime-storage-migrations/',
     Category: 'Technical Blog',
@@ -863,7 +1232,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Papermoon Ecosystem Docs - Zombinet',
-    Status: 'In progress',
+    Status: LearningResourceStatus.IN_PROGRESS,
     'Third-party source': 'Yes',
     Link: 'https://papermoonio.github.io/polkadot-ecosystem-docs-draft/dev-tools/zombienet/',
     Category: 'Documentation',
@@ -874,7 +1243,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Papermoon Ecosystem Docs - Chopstick',
-    Status: 'In progress',
+    Status: LearningResourceStatus.IN_PROGRESS,
     'Third-party source': 'Yes',
     Link: 'https://papermoonio.github.io/polkadot-ecosystem-docs-draft/dev-tools/chopsticks/overview/',
     Category: 'Documentation',
@@ -885,7 +1254,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Relaychain Hybrid Consensus',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'No',
     Link: 'https://x.com/openguildwtf/status/1809203505649037391',
     Category: 'Technical Blog',
@@ -896,7 +1265,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Breakdown the sharded network design of Polkadot',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'No',
     Link: 'https://x.com/chungquantin/status/1809864276850704882',
     Category: 'Technical Blog',
@@ -907,7 +1276,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Code Breakdown - Substrate Node',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'No',
     Link: 'https://openguild.wtf/blog/polkadot/code-breakdown-substrate-node',
     Category: 'Technical Blog',
@@ -918,7 +1287,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Code Breakdown - Substrate P2P Networking',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'No',
     Link: 'https://openguild.wtf/blog/polkadot/code-breakdown-substrate-p2p-networking',
     Category: 'Technical Blog',
@@ -929,7 +1298,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Polkadot Study - Substrate In Bits',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'Yes',
     Link: 'https://polkadot.study/tutorials/substrate-in-bits',
     Category: 'Course',
@@ -940,7 +1309,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Polkadot Study - Tokengated Website with polkadot.js and next-auth',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'Yes',
     Link: 'https://polkadot.study/tutorials/tokengated-polkadot-next-js/intro',
     Category: 'Course',
@@ -952,7 +1321,7 @@ export const learningResources: LearningResource[] = [
   {
     'Course Name':
       'Polkadot Study - How to implement decentralized exchange in ink! smart contract language',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'Yes',
     Link: 'https://polkadot.study/tutorials/decentralized-exchange-ink/introduction',
     Category: 'Course',
@@ -963,7 +1332,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': "OpenGuild's Coding Session: Rust State Machine",
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'No',
     Link: 'https://www.youtube.com/watch?v=xWp-83KYkXs',
     Category: 'Tutorial Video & Livestream',
@@ -974,7 +1343,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': "OpenGuild's Coding Session: Implementing a Merkle Tree",
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'No',
     Link: 'https://www.youtube.com/watch?v=X8cyx0RK4JY&t=1689s',
     Category: 'Tutorial Video & Livestream',
@@ -985,7 +1354,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Substrate Bitcoin',
-    Status: 'Not started',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'No',
     Link: 'https://github.com/openguild-labs/substrate-bitcoin',
     Category: 'Course',
@@ -996,7 +1365,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Open Hack XCM',
-    Status: 'Not started',
+    Status: LearningResourceStatus.NOT_STARTED,
     'Third-party source': 'No',
     Link: 'https://github.com/openguild-labs/open-hack-xcm',
     Category: 'Open Hack Module',
@@ -1007,7 +1376,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Open Hack Chopstick',
-    Status: 'In progress',
+    Status: LearningResourceStatus.IN_PROGRESS,
     'Third-party source': 'No',
     Link: 'https://github.com/openguild-labs/open-hack-chopstick',
     Category: 'Open Hack Module',
@@ -1018,7 +1387,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Open Hack ink! Advanced',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'No',
     Link: 'https://github.com/openguild-labs/open-hack-ink-advanced',
     Category: 'Open Hack Module',
@@ -1029,7 +1398,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Substrate Kitties',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'No',
     Link: 'https://github.com/openguild-labs/substrate-kitties',
     Category: 'Course',
@@ -1040,7 +1409,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Parity Substrate DevOps Guide',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'Yes',
     Link: 'https://paritytech.github.io/devops-guide/',
     Category: 'Documentation',
@@ -1051,7 +1420,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Infrastructure DevOps Resources',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'Yes',
     Link: 'https://forum.polkadot.network/t/infrastructure-devops-resources/1016',
     Category: 'Documentation',
@@ -1062,7 +1431,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'The Collator Setup Guide',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'Yes',
     Link: 'https://hackmd.io/@s_iGZLIITG6WjSgnFX0pcg/the-collator-setup-guide',
     Category: 'Documentation',
@@ -1073,7 +1442,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'XCM Official Documentation',
-    Status: 'In progress',
+    Status: LearningResourceStatus.IN_PROGRESS,
     'Third-party source': 'Yes',
     Link: 'https://paritytech.github.io/xcm-docs/',
     Category: 'Documentation',
@@ -1084,7 +1453,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Polkadot SDK Docs - Enable metadata hash verification',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'Yes',
     Link: 'https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/guides/enable_metadata_hash/index.html',
     Category: 'Documentation',
@@ -1095,7 +1464,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Polkadot SDK Docs - Enable storage weight reclaiming',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'Yes',
     Link: 'https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/guides/enable_pov_reclaim/index.html',
     Category: 'Documentation',
@@ -1106,7 +1475,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Polkadot SDK Docs - Enable elastic scaling MVP for a parachain',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'Yes',
     Link: 'https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/guides/enable_elastic_scaling_mvp/index.html',
     Category: 'Documentation',
@@ -1117,7 +1486,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Polkadot SDK Docs - Upgrade Parachain for Asynchronous Backing Compatibility',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'Yes',
     Link: 'https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/guides/async_backing_guide/index.html',
     Category: 'Documentation',
@@ -1128,7 +1497,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Shawn Tabrizi - XCM Workshop',
-    Status: 'Done',
+    Status: LearningResourceStatus.DONE,
     'Third-party source': 'Yes',
     Link: 'https://www.shawntabrizi.com/xcm-workshop/#/',
     Category: 'Course',
@@ -1139,7 +1508,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Learn JAM',
-    Status: 'In progress',
+    Status: LearningResourceStatus.IN_PROGRESS,
     'Third-party source': 'No',
     Link: 'https://github.com/openguild-labs/learn-jam',
     Category: 'Aggregated Resource',
@@ -1150,7 +1519,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Substrate DPOS',
-    Status: 'In progress',
+    Status: LearningResourceStatus.IN_PROGRESS,
     'Third-party source': 'No',
     Link: 'https://github.com/openguild-labs/substrate-nposdpos',
     Category: 'Course',
@@ -1161,7 +1530,7 @@ export const learningResources: LearningResource[] = [
   },
   {
     'Course Name': 'Substrate NPOS',
-    Status: 'In progress',
+    Status: LearningResourceStatus.IN_PROGRESS,
     'Third-party source': 'No',
     Link: 'https://github.com/openguild-labs/substrate-npos',
     Category: 'Course',
@@ -1170,6 +1539,7 @@ export const learningResources: LearningResource[] = [
     Source: 'OpenGuild',
     'Bundle Name': 'Substrate Course Bundle',
   },
+  ...polkaVMResources,
 ].sort((ca, cb) => (cb['Course Name'] > ca['Course Name'] ? -1 : 1));
 
 export const courses = [...substrateCourses, ...inkTutorials, ...rustTutorials].sort(

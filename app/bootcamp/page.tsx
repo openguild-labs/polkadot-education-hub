@@ -1,14 +1,21 @@
 import Link from 'next/link';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import {
-  bootcampPolkadotSdkVideos,
-  bootcampSolidityOnPolkaVmVideos,
-  extractSection,
-} from '@/constants';
-import { CheckCircle } from 'lucide-react';
+  CheckCircle,
+  Calendar,
+  Clock,
+  Users,
+  Award,
+  Book,
+  Video,
+  Presentation,
+  User,
+} from 'lucide-react';
 import { HeroLayout } from '@/components/hero';
+import { BundlesSection } from './bundles';
+import AnimateInView from '@/components/animations/animate-in-view';
+import { ProtocolFeatureCard } from '@/components/protocol-feature-card';
+import { learningResources, courses, technicalVideos, workshops } from '@/constants';
 
 export default function BootcampPage() {
   return (
@@ -17,20 +24,196 @@ export default function BootcampPage() {
       <HeroLayout
         title={
           <span>
-            Open <span className="text-pink-600">Polkadot Bootcamp</span>
+            <span className="text-pink-600">Polkadot 2.0</span> APAC Bootcamp
           </span>
         }
-        subtitle="An intensive, hands-on learning experience to master Polkadot development"
+        subtitle="Bootcamp series to learn about Polkadot SDK development and Polkadot 2.0 new technologieis, designed for APAC region."
         primaryButton={{ href: '#curriculum', text: 'View Curriculum' }}
         secondaryButton={{ href: '#register', text: 'Register Now' }}
       />
+      {/* Why Learn Polkadot Section */}
+      <AnimateInView animation="fadeIn">
+        <section className="bg-gray-50 py-16 dark:bg-gray-900">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto w-full text-center">
+              <AnimateInView animation="slideUp">
+                <h2 className="section-title font-unbounded">Why Learn Polkadot?</h2>
+                <p className="section-description text-md mx-auto font-unbounded">
+                  Polkadot is a platform that enables innovators and changemakers to build and
+                  connect blockchains, creating a more decentralized and interconnected world.
+                </p>
+              </AnimateInView>
+              <div className="mt-12 grid gap-8 md:grid-cols-2 sm:grid-cols-1">
+                {[
+                  {
+                    icon: (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="lucide lucide-link"
+                      >
+                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                      </svg>
+                    ),
+                    title: 'Interoperability',
+                    description:
+                      "Connect multiple blockchains with Polkadot's cross-chain messaging system, allowing seamless communication between parachains.",
+                    image: '/images/polkadot-graphics/Polkadot_Asset_05.png',
+                  },
+                  {
+                    icon: (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="lucide lucide-shield"
+                      >
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+                      </svg>
+                    ),
+                    title: 'Security',
+                    description:
+                      'Benefit from shared security across the network, allowing smaller blockchains to leverage the security of the entire ecosystem.',
+                    image: '/images/polkadot-graphics/Polkadot_Asset_21.png',
+                  },
+                  {
+                    icon: (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="lucide lucide-zap"
+                      >
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                      </svg>
+                    ),
+                    title: 'Scalability',
+                    description:
+                      "Process multiple transactions in parallel across different parachains, significantly increasing the network's throughput.",
+                    image: '/images/polkadot-graphics/Polkadot_Asset_11.png',
+                  },
+                  {
+                    icon: (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="lucide lucide-users"
+                      >
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <path d="M17 7h2a2 2 0 1 1 0 4h-2a2 2 0 0 1 0-4zM19 7a2 2 0 1 1 0 4h2a2 2 0 0 1 0 4h-2a2 2 0 0 1 0-4"></path>
+                      </svg>
+                    ),
+                    title: 'Governance',
+                    description:
+                      'Benefit from on-chain governance, allowing the community to vote on proposals that shape the future of the network.',
+                    image: '/images/polkadot-graphics/Polkadot_Asset_25.png',
+                  },
+                ].map((feature, index) => (
+                  <AnimateInView animation="slideUp" delay={0.1 * index}>
+                    <ProtocolFeatureCard
+                      icon={feature.icon}
+                      title={feature.title}
+                      description={feature.description}
+                      image={feature.image}
+                    />
+                  </AnimateInView>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      </AnimateInView>
+
+      {/* Stats Section */}
+      <AnimateInView animation="fadeIn">
+        <section
+          className="py-12 relative isolate overflow-hidden"
+          style={{
+            backgroundImage: 'url(/images/backgrounds/gradient-bg-4.png)',
+            backgroundSize: 'cover',
+          }}
+        >
+          <div className="container mx-auto px-4">
+            <div className="grid gap-6 text-black md:grid-cols-4">
+              <AnimateInView
+                animation="scale"
+                delay={0.1}
+                className="text-center shadow-lg bg-white p-6 rounded-xl"
+              >
+                <div className="text-4xl font-bold flex items-center justify-center font-unbounded">
+                  <Book className="text-pink-600 mr-2" /> {learningResources.length}+
+                </div>
+                <div className="mt-2 text-black/80 font-unbounded">Learning Resources</div>
+              </AnimateInView>
+              <AnimateInView
+                animation="scale"
+                delay={0.2}
+                className="text-center shadow-lg bg-white p-6 rounded-xl"
+              >
+                <div className="text-4xl font-bold flex items-center justify-center font-unbounded">
+                  <Video className="text-pink-600 mr-2" /> {courses.length + technicalVideos.length}
+                  +
+                </div>
+                <div className="mt-2 text-black/80 font-unbounded">Video Tutorials</div>
+              </AnimateInView>
+              <AnimateInView
+                animation="scale"
+                delay={0.3}
+                className="text-center shadow-lg bg-white p-6 rounded-xl"
+              >
+                <div className="text-4xl font-bold flex items-center justify-center font-unbounded">
+                  <Presentation className="text-pink-600 mr-2" /> {workshops.length}+
+                </div>
+                <div className="mt-2 text-black/80 font-unbounded">Workshops</div>
+              </AnimateInView>
+              <AnimateInView
+                animation="scale"
+                delay={0.4}
+                className="text-center shadow-lg bg-white p-6 rounded-xl"
+              >
+                <div className="text-4xl font-bold flex items-center justify-center font-unbounded">
+                  <User className="text-pink-600 mr-2" /> 1,000+
+                </div>
+                <div className="mt-2 text-black/80 font-unbounded">Students Registered</div>
+              </AnimateInView>
+            </div>
+          </div>
+        </section>
+      </AnimateInView>
       {/* Bootcamp Info */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-4xl">
-            <div className="grid gap-8 md:grid-cols-1">
+          <div className="mx-auto">
+            <div className="grid gap-8 md:grid-cols-2">
               {/** TODO: Enable when bootcamp info is available */}
-              {/* <div className="rounded-2xl bg-white p-6 shadow-lg dark:bg-gray-800">
+              <div className="rounded-2xl bg-white p-6 shadow-lg dark:bg-gray-800">
                 <h2 className="mb-4 font-heading text-2xl font-bold text-gray-900 dark:text-white">
                   Bootcamp Details
                 </h2>
@@ -79,7 +262,7 @@ export default function BootcampPage() {
                     </div>
                   </div>
                 </div>
-              </div> */}
+              </div>
               <div className="rounded-2xl bg-white p-6 shadow-lg dark:bg-gray-800">
                 <h2 className="mb-4 font-heading text-2xl font-bold text-gray-900 dark:text-white">
                   What You'll Learn
@@ -138,187 +321,7 @@ export default function BootcampPage() {
         </div>
       </section>
 
-      {/* Curriculum */}
-      <section id="curriculum" className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="mb-12 text-center">
-            <h2 className="section-title">Bootcamp Curriculum</h2>
-            <p className="section-description mx-auto">
-              Choose between two specialized tracks to focus your learning journey
-            </p>
-          </div>
-
-          <Tabs defaultValue="polkadot-sdk" className="mx-auto max-w-5xl">
-            <TabsList className="mb-8 grid w-full grid-cols-2">
-              <TabsTrigger value="polkadot-sdk" className="text-base">
-                Polkadot SDK Track
-              </TabsTrigger>
-              <TabsTrigger value="polkavm" className="text-base">
-                Solidity on PolkaVM Track
-              </TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="polkadot-sdk" className="space-y-8">
-              <Card>
-                <CardContent className="p-6">
-                  <div className="grid gap-6 md:grid-cols-2">
-                    <div>
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                        Polkadot SDK Curriculum
-                      </h3>
-                      <p className="mt-2 text-gray-600 dark:text-gray-300">
-                        Learn how to build scalable blockchains using the Polkadot SDK. This track
-                        covers everything from basic concepts to advanced parachain development.
-                      </p>
-                      <div className="mt-4 flex items-center">
-                        <div className="rounded-full bg-pink-100 px-3 py-1 text-sm font-medium text-pink-800 dark:bg-pink-900/30 dark:text-pink-300">
-                          {bootcampPolkadotSdkVideos.length} videos
-                        </div>
-                        <span className="ml-2 text-sm text-gray-500 dark:text-gray-400">
-                          • {extractSection(bootcampPolkadotSdkVideos).length} sections
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <div className="space-y-6">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white">Course Modules</h3>
-
-                {/* Module list with accordion-like structure */}
-                <div className="space-y-4">
-                  {[
-                    {
-                      title: 'Module 1: Introduction to Polkadot & Polkadot SDK',
-                      lessons: bootcampPolkadotSdkVideos.slice(0, 2),
-                    },
-                    {
-                      title: 'Module 2: Building Your First Blockchain',
-                      lessons: bootcampPolkadotSdkVideos.slice(2, 4),
-                    },
-                    {
-                      title: 'Module 3: Runtime Development',
-                      lessons: bootcampPolkadotSdkVideos.slice(4, 9),
-                    },
-                    {
-                      title: 'Module 4: Interacting with Substrate Nodes',
-                      lessons: bootcampPolkadotSdkVideos.slice(9, 11),
-                    },
-                    {
-                      title: 'Module 5: Advanced Topics',
-                      lessons: bootcampPolkadotSdkVideos.slice(11, 14),
-                    },
-                    {
-                      title: 'Module 6: Parachain Development',
-                      lessons: bootcampPolkadotSdkVideos.slice(14, 17),
-                    },
-                  ].map((module, index) => (
-                    <div
-                      key={index}
-                      className="rounded-lg border border-gray-200 dark:border-gray-800"
-                    >
-                      <div className="rounded-t-lg bg-gray-50 px-4 py-3 dark:bg-gray-900">
-                        <h4 className="font-medium text-gray-900 dark:text-white">
-                          {module.title}
-                        </h4>
-                      </div>
-                      <div className="p-4">
-                        <div className="space-y-2">
-                          {module.lessons.map((lesson, lessonIndex) => (
-                            <div key={lessonIndex} className="flex items-start">
-                              <div className="mr-2 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-pink-100 text-pink-600 dark:bg-pink-900/30 dark:text-pink-300">
-                                {lessonIndex + 1}
-                              </div>
-                              <div className="text-sm text-gray-700 dark:text-gray-300">
-                                {lesson.title}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </TabsContent>
-
-            <TabsContent value="polkavm" className="space-y-8">
-              <Card>
-                <CardContent className="p-6">
-                  <div className="grid gap-6 md:grid-cols-2">
-                    <div>
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                        Solidity on PolkaVM Curriculum
-                      </h3>
-                      <p className="mt-2 text-gray-600 dark:text-gray-300">
-                        Learn how to use Solidity on PolkaVM, a revolutionary smart contract
-                        platform built on RISC-V. This track is perfect for Ethereum developers
-                        looking to build on Polkadot.
-                      </p>
-                      <div className="mt-4 flex items-center">
-                        <div className="rounded-full bg-pink-100 px-3 py-1 text-sm font-medium text-pink-800 dark:bg-pink-900/30 dark:text-pink-300">
-                          {bootcampSolidityOnPolkaVmVideos.length} videos
-                        </div>
-                        <span className="ml-2 text-sm text-gray-500 dark:text-gray-400">
-                          • {extractSection(bootcampSolidityOnPolkaVmVideos).length} sections
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <div className="space-y-6">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white">Course Modules</h3>
-
-                {/* Module list with accordion-like structure */}
-                <div className="space-y-4">
-                  {[
-                    {
-                      title: 'Module 1: Introduction to PolkaVM',
-                      lessons: bootcampSolidityOnPolkaVmVideos.slice(0, 4),
-                    },
-                    {
-                      title: 'Module 2: Solidity Fundamentals on PolkaVM',
-                      lessons: bootcampSolidityOnPolkaVmVideos.slice(4, 8),
-                    },
-                    {
-                      title: 'Module 3: Advanced Smart Contract Development',
-                      lessons: bootcampSolidityOnPolkaVmVideos.slice(8, 12),
-                    },
-                  ].map((module, index) => (
-                    <div
-                      key={index}
-                      className="rounded-lg border border-gray-200 dark:border-gray-800"
-                    >
-                      <div className="rounded-t-lg bg-gray-50 px-4 py-3 dark:bg-gray-900">
-                        <h4 className="font-medium text-gray-900 dark:text-white">
-                          {module.title}
-                        </h4>
-                      </div>
-                      <div className="p-4">
-                        <div className="space-y-2">
-                          {module.lessons.map((lesson, lessonIndex) => (
-                            <div key={lessonIndex} className="flex items-start">
-                              <div className="mr-2 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-pink-100 text-pink-600 dark:bg-pink-900/30 dark:text-pink-300">
-                                {lessonIndex + 1}
-                              </div>
-                              <div className="text-sm text-gray-700 dark:text-gray-300">
-                                {lesson.title}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </TabsContent>
-          </Tabs>
-        </div>
-      </section>
+      <BundlesSection />
 
       {/* CTA Section */}
       <section

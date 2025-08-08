@@ -1,6 +1,5 @@
 import FeaturedCourses from '@/components/featured-courses';
 import BootcampPromo from '@/components/bootcamp-promo';
-import TestimonialSection from '@/components/testimonial-section';
 import CategoryShowcase from '@/components/category-showcase';
 import Hero from '@/components/hero';
 import AnimateInView from '@/components/animations/animate-in-view';

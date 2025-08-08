@@ -446,10 +446,10 @@ function BundleDialog({ bundle }: { bundle: Bundle }) {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
-                    className="gap-4"
+                    className="gap-4 py-4"
                   >
                     <div>
-                      <h2 className="text-3xl font-bold text-black font-unbounded">
+                      <h2 className="text-2xl font-bold text-black font-unbounded">
                         {bundle.name}
                       </h2>
                       <p className="mt-3 text-lg text-black/80 leading-relaxed max-w-2xl">
